@@ -1,5 +1,6 @@
 package Biblioteca;
 
+import Biblioteca.Exception.LimiteLivrosExeption;
 import Biblioteca.Feriados.Feriado;
 import Biblioteca.Estante.*;
 import Biblioteca.Usuarios.*;
@@ -62,7 +63,7 @@ public class Aplicacao {
         return data;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
 
         System.out.println();
@@ -101,6 +102,25 @@ public class Aplicacao {
 
         System.out.println(livro1.toString());
 
-        biblioteca.pegaLivro(livro1, joao);
+        List<Livro> livros = new ArrayList<Livro>();
+        livros.add(livro1);
+        livros.add(livro2);
+        livros.add(livro3);
+        livros.add(livro4);
+        livros.add(livro5);
+        livros.add(livro6);
+
+
+
+        try {
+            biblioteca.pegaLivro(livros, joao);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            biblioteca.pegaLivro(livros, gustavo);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
