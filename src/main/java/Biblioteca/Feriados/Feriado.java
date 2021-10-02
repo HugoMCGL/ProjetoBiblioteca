@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class Feriado {
      private LocalDate data;
-     private String descricaoo;
+     private String descricao;
 
-    public Feriado(LocalDate data, String descricaoo) {
+    public Feriado(LocalDate data, String descricao) {
         this.data = data;
-        this.descricaoo = descricaoo;
+        this.descricao = descricao;
     }
 }
