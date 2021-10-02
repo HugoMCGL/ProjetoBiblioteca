@@ -4,6 +4,11 @@ import Biblioteca.Usuarios.*;
 
 public class Biblioteca {
     public void pegaLivro(Livro livro, Pessoa pessoa){
+        if(pessoa instanceof Professores){
+
+        }else {
+
+        }
 
     }
 }

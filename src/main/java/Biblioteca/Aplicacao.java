@@ -19,8 +19,6 @@ public class Aplicacao {
 
 
 
-
-
     private static boolean isDiaUtil(LocalDate data) {
         DayOfWeek dayOfWeek = data.getDayOfWeek();
         return !(SATURDAY.equals(dayOfWeek) || SUNDAY.equals(dayOfWeek) || isFeriado(data));
@@ -50,10 +48,27 @@ public class Aplicacao {
         return feriadosList;
     }
 
+
+    private static LocalDate calcularDataAposDiasUteis(int diasUteisDesejado) {
+        LocalDate data = LocalDate.now();//hoje + 10 dias úteis
+        int diasUteis = 0;
+
+        while(diasUteis < diasUteisDesejado) {
+            data = data.plusDays(1);
+            if (isDiaUtil(data)) {
+                diasUteis++;
+            }
+        }
+        return data;
+    }
+
     public static void main(String[] args) {
 
 
+        System.out.println();
         Biblioteca biblioteca = new Biblioteca();
+
+        System.out.println(calcularDataAposDiasUteis(4));
 
         Pessoa inacio = new Alunos("Inacio", 2000, "Inacio@gmail.com: " + EnumClasse.Aluno);
         Pessoa joao = new Alunos("Joao", 2001, "joao@gmail.com: " + EnumClasse.Aluno);
