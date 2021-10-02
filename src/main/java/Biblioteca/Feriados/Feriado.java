@@ -10,4 +10,8 @@ public class Feriado {
         this.data = data;
         this.descricao = descricao;
     }
+
+    public LocalDate getData() {
+        return data;
+    }
 }
