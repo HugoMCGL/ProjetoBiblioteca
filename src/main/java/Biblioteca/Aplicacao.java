@@ -4,13 +4,37 @@ import Biblioteca.Feriados.Feriado;
 import Biblioteca.Estante.*;
 import Biblioteca.Usuarios.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static java.time.DayOfWeek.SATURDAY;
+import static java.time.DayOfWeek.SUNDAY;
 
 public class Aplicacao {
     List<Feriado> feriadosList = getFeriados();
     LocalDate hoje = LocalDate.now();
+
+
+
+
+
+    private static boolean isDiaUtil(LocalDate data) {
+        DayOfWeek dayOfWeek = data.getDayOfWeek();
+        return !(SATURDAY.equals(dayOfWeek) || SUNDAY.equals(dayOfWeek) || isFeriado(data));
+    }
+
+    public static boolean isFeriado(LocalDate data) {
+        List<Feriado> feriados = getFeriados();
+        for (Feriado f : feriados) {
+            if (f.getData().isEqual(data)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private static List<Feriado> getFeriados() {
         List<Feriado> feriadosList = new ArrayList<>();
