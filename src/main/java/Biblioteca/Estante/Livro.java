@@ -1,8 +1,8 @@
 package Biblioteca.Estante;
 
-import static java.lang.Boolean.FALSE;
 
 public class Livro {
+
     int isbn;
     String titulo, autor, editora;
     boolean emprestado; //verifica se o livro foi emprestado
@@ -12,7 +12,7 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
-        emprestado = FALSE;
+        emprestado = false;
     }
 
     public int getIsbn() {

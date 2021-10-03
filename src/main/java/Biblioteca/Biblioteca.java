@@ -1,16 +1,12 @@
 package Biblioteca;
 import Biblioteca.Data.*;
 import Biblioteca.Estante.Livro;
-import Biblioteca.Exception.LimiteLivrosExeption;
 import Biblioteca.Usuarios.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
 
 //Acervo adicionado como atributo da bibloteca para guardar os livros dispoiveis dentro dela,
 // criado pelo metodo getLivros
@@ -51,30 +47,42 @@ public class Biblioteca {
         return acervo = getLivros();
     }
 
-    public void fazerEmprestimoDeLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException, LimiteLivrosExeption {
+    public void fazerEmprestimoDeLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException {
 
-        if(pessoa instanceof  Alunos) {
-            if (!isMaisQue(3, livrosEmprestimo)) {
-                confirmarEmprestimo(livrosEmprestimo);
-                dataEntrega = calculaData.calcularDataAposDiasUteis(10);
-                System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
-
-            } else {
-                throw new IllegalArgumentException("Aluno não pode pegar mais de 3 livros");
-            }
+        verificaSePessoaJaEmprestou(pessoa);
+        verificaSePessoaSuspensa(pessoa);
+        if(pessoa instanceof Alunos) {
+            isMaisQue(3, livrosEmprestimo);
         } else {
-            if (!isMaisQue(5, livrosEmprestimo)) {
-                confirmarEmprestimo(livrosEmprestimo);
-                dataEntrega = calculaData.calcularDataAposDiasUteis(20);
-                System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
-            } else {
-                throw new IllegalArgumentException("Professor não pode pegar mais de 5 livros");
-            }
+            isMaisQue(5, livrosEmprestimo);
+        }
+        confirmarEmprestimo(livrosEmprestimo);
+        dataEntrega = calculaData.calcularDataAposDiasUteis(10);
+        pessoa.setEmprestimoRealizado(true);
+        System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
+        livrosEmprestimo.clear();
+    }
+
+    private void verificaSePessoaSuspensa(Pessoa pessoa) {
+        if(pessoa.isSuspenso()) {
+            throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
         }
     }
 
-    private boolean isMaisQue(int n, List<Livro> livrosEmprestimo) {
+    /*private boolean isMaisQue2(int n, List<Livro> livrosEmprestimo) {
         return (livrosEmprestimo.size() > n);
+    }*/
+
+    private void isMaisQue(int n, List<Livro> livrosEmprestimo) {
+        if (livrosEmprestimo.size() > n) {
+            throw new IllegalArgumentException("Você não pode pegar mais de " +n+ " livros");
+        }
+    }
+
+    private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
+        if (pessoa.isEmprestimoRealizado()) {
+            throw new IllegalArgumentException("Você já realizou emprestimo");
+        }
     }
 
     /*private boolean verificaSituacaoDoEmprestimo(Livro livro, int i) {
@@ -93,16 +101,24 @@ public class Biblioteca {
         return FALSE;
     }*/
 
-    private boolean verificaSeFoiEmprestado(Livro livro) {
-        return !livro.getEmprestado();
+    private void verificaSeFoiEmprestado(Livro livro) {
+        if(livro.getEmprestado()) {
+            throw new IllegalArgumentException("Livro ja emprestado");
+        }
     }
 
     private boolean verificaIgual(Livro livro, int i) {
         return acervo.get(i).getTitulo().equals(livro.getTitulo());
     }
 
-    private boolean isInAcervo(Livro livro) {
+    /*private boolean isInAcervo(Livro livro) {
         return acervo.contains(livro);
+    }*/
+
+    private void isInAcervo(Livro livro) {
+        if (!acervo.contains(livro)) {
+            throw new IllegalArgumentException("Livro não está no acervo");
+        }
     }
 
 
@@ -110,35 +126,33 @@ public class Biblioteca {
         int size = livros.size();
         System.out.println(size);
         int[] indicesAcervo = new int [size];
-        setIndice(indicesAcervo, -1);
+        Arrays.fill(indicesAcervo, -1);
         for (int j = 0; j < size; j ++) {
             for (int i = 0; i < acervo.size(); i++) {
-                //System.out.println();
-                //System.out.println(livros.get(j).getTitulo());
-                //System.out.println(acervo.get(i).getTitulo());
-                //System.out.println("Igualdade: " + verificaIgual(livros.get(j), i));
-                //System.out.println("Situação emprestimo: " + livros.get(j).getEmprestado());
-                //System.out.println();
-                if (!isInAcervo(livros.get(j))) {
+                isInAcervo(livros.get(j));
+                /*
+                System.out.println();
+                System.out.println(livros.get(j).getTitulo());
+                System.out.println(acervo.get(i).getTitulo());
+                System.out.println("Igualdade: " + verificaIgual(livros.get(j), i));
+                System.out.println("Situação emprestimo: " + livros.get(j).getEmprestado());
+                System.out.println();
+                */
+                /*if (!isInAcervo(livros.get(j))) {
                     System.out.println("Livro não está no acervo");
                     throw new IllegalArgumentException("Livro não está no acervo");
-                }
+                }*/
                 if (verificaIgual(livros.get(j), i)) {
-                    if (verificaSeFoiEmprestado(livros.get(j))) {
-                        System.out.println("Deu certo o emprestimo");
-                        indicesAcervo[j] = i;
-                        break;
-                    }
-                    //System.out.println("Livro ja emprestado");
-                    throw new IllegalArgumentException("Livro ja emprestado");
+                    verificaSeFoiEmprestado(livros.get(j));
+                    indicesAcervo[j] = i;
+                    break;
                 }
-                System.out.println("");
             }
         }
         //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMPRESTIMO
         if (verificaIndice(indicesAcervo, -1)) {
-            for (int i = 0; i < indicesAcervo.length; i++) {
-                acervo.get(indicesAcervo[i]).setEmprestado(TRUE);
+            for (int j : indicesAcervo) {
+                acervo.get(j).setEmprestado(true);
             }
             System.out.println("Emprestimo realizado");
         }
@@ -146,22 +160,17 @@ public class Biblioteca {
 
     private boolean verificaIndice(int[] n, int i) {
         int conta = 0;
-        for (int j=0; j < n.length; j++) {
-            if(n[j] != i) {
+        for (int k : n) {
+            if (k != i) {
                 conta++;
             }
         }
-        if (conta == n.length) {
-            return TRUE;
-        }
-        return FALSE;
+        return conta == n.length;
     }
 
-    private void setIndice(int[] n, int i) {
-        for (int j=0; j < n.length; j++) {
-            n[j] = i;
-        }
-    }
+    /*private void setIndice(int[] n) {
+        Arrays.fill(n, -1);
+    }*/
 
     public List<Livro> getLivros() {
         List<Livro> acervo = new ArrayList<>();

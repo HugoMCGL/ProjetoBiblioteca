@@ -15,13 +15,13 @@ public class Aplicacao {
         biblioteca.getAcervo();
 
 
-        Pessoa inacio = new Alunos("Inacio", 2000, "Inacio@gmail.com: " + EnumClasse.Aluno);
-        Pessoa joao = new Alunos("Joao", 2001, "joao@gmail.com: " + EnumClasse.Aluno);
-        Pessoa julio = new Alunos("Julio", 2003, "julio@gmail.com: " + EnumClasse.Aluno);
+        Pessoa inacio = new Alunos("Inacio", 2000, "Inacio@gmail.com: " + EnumClasse.ALUNO);
+        Pessoa joao = new Alunos("Joao", 2001, "joao@gmail.com: " + EnumClasse.ALUNO);
+        Pessoa julio = new Alunos("Julio", 2003, "julio@gmail.com: " + EnumClasse.ALUNO);
 
-        Pessoa gustavo = new Professores("Gustavo", 1001, "gustavo@gmail.com: " + EnumClasse.Professor);
-        Pessoa hugo = new Professores("Hugo", 1002, "Hugo@gmail.com: " + EnumClasse.Professor);
-        Pessoa roberto = new Professores("Roberto", 1003, "roberto@gmail.com: " + EnumClasse.Professor);
+        Pessoa gustavo = new Professores("Gustavo", 1001, "gustavo@gmail.com: " + EnumClasse.PROFESSOR);
+        Pessoa hugo = new Professores("Hugo", 1002, "Hugo@gmail.com: " + EnumClasse.PROFESSOR);
+        Pessoa roberto = new Professores("Roberto", 1003, "roberto@gmail.com: " + EnumClasse.PROFESSOR);
 
 
         System.out.println(inacio.toString());
@@ -42,10 +42,12 @@ public class Aplicacao {
         //listaLivrosDesejados.add(biblioteca.livro3);
        // listaLivrosDesejados.add(biblioteca.livro4);
 
-
-        /*for (Livro l : listaLivrosDesejados) {
+        System.out.println();
+        for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
-        }*/
+        }
+
+
 
         //AQUI
         try {
@@ -53,17 +55,44 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        listaLivrosDesejados.clear();
+
+
+        try {
+            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        //listaLivrosDesejados.clear();
 
         System.out.println(listaLivrosDesejados.toString());
-        listaLivrosDesejados.add(biblioteca.livro13);
-        listaLivrosDesejados.add(biblioteca.livro14);
-        listaLivrosDesejados.add(biblioteca.livro20);
-        //listaLivrosDesejados.add(biblioteca.livro9);
-        System.out.println(listaLivrosDesejados.toString());
+        listaLivrosDesejados.add(biblioteca.livro10);
+        listaLivrosDesejados.add(biblioteca.livro8);
+        listaLivrosDesejados.add(biblioteca.livro1);
+        listaLivrosDesejados.add(biblioteca.livro7);
+        listaLivrosDesejados.add(biblioteca.livro9);
+
+        for (Livro l : listaLivrosDesejados) {
+            System.out.println(l.toString());
+        }
 
         try {
             biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, gustavo);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        listaLivrosDesejados.clear();
+        listaLivrosDesejados.add(biblioteca.livro11);
+        listaLivrosDesejados.add(biblioteca.livro12);
+        listaLivrosDesejados.add(biblioteca.livro13);
+        listaLivrosDesejados.add(biblioteca.livro13);
+        for (Livro l : listaLivrosDesejados) {
+            System.out.println(l.toString());
+        }
+
+        try {
+            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, inacio);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

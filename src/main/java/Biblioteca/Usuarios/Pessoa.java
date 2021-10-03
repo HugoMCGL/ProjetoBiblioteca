@@ -1,19 +1,45 @@
 package Biblioteca.Usuarios;
 
+import Biblioteca.Estante.Livro;
+
+import java.util.List;
+
 public class Pessoa {
 
     private String nome;
     private double matricula;
     private String email;
+    private boolean emprestimoRealizado;
+    private boolean suspenso;
+    private List<Livro> livroList;
 
     public Pessoa() {
     }
+
     public Pessoa(String nome, double matricula, String email) {
         this.nome = nome;
         this.matricula = matricula;
         this.email = email;
-
+        emprestimoRealizado = false;
+        suspenso = false;
     }
+
+    public boolean isSuspenso() {
+        return suspenso;
+    }
+
+    public void setSuspenso(boolean suspenso) {
+        this.suspenso = suspenso;
+    }
+
+    public void setEmprestimoRealizado(boolean emprestimoRealizado) {
+        this.emprestimoRealizado = emprestimoRealizado;
+    }
+
+    public boolean isEmprestimoRealizado() {
+        return emprestimoRealizado;
+    }
+
     public String getNome() {
         return nome;
     }
