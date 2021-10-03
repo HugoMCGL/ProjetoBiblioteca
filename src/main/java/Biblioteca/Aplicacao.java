@@ -123,14 +123,14 @@ public class Aplicacao {
 
         //AQUI
         try {
-            biblioteca.pegaLivro(livros, joao);
+            biblioteca.fazerEmprestimoDeLivro(livros, joao);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         //
 
         try {
-            biblioteca.pegaLivro(livros2, gustavo);
+            biblioteca.fazerEmprestimoDeLivro(livros2, gustavo);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

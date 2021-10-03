@@ -25,22 +25,21 @@ public class Biblioteca {
         return acervo = getLivros();
     }
 
-    public void pegaLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException, LimiteLivrosExeption {
+    public void fazerEmprestimoDeLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException, LimiteLivrosExeption {
 
         if(pessoa instanceof  Alunos) {
             if (!isMaisQue(3, livrosEmprestimo)) {
-                fazerEmprestimo(livrosEmprestimo);
+                confirmarEmprestimo(livrosEmprestimo);
             } else {
                 throw new IllegalArgumentException("Aluno não pode pegar mais de 3 livros");
             }
         } else {
             if (!isMaisQue(5, livrosEmprestimo)) {
-                fazerEmprestimo(livrosEmprestimo);
+                confirmarEmprestimo(livrosEmprestimo);
             } else {
                 throw new IllegalArgumentException("Professor não pode pegar mais de 5 livros");
             }
         }
-
 
         if(pessoa instanceof Professores){
             for (Livro livro: livrosEmprestimo) {
@@ -58,15 +57,15 @@ public class Biblioteca {
         return (livrosEmprestimo.size() > n);
     }
 
-    private boolean confirmarEmprestimo(String titulo, int i) {
+    private boolean verificaAcervo(String titulo, int i) {
         return (acervo.get(i).getTitulo().equals(titulo) && !acervo.get(i).getEmprestado());
     }
 
-    private void fazerEmprestimo (List<Livro> livros) {
+    private void confirmarEmprestimo(List<Livro> livros) {
         int j = 0;
         for (int i = 0; i < livros.size(); i++) {
             System.out.println();
-            if (confirmarEmprestimo(livros.get(j).getTitulo(), i)) {
+            if (verificaAcervo(livros.get(j).getTitulo(), i)) {
                 acervo.get(i).setEmprestado(TRUE);
                 j++;
             }
