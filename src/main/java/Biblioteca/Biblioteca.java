@@ -98,7 +98,7 @@ public class Biblioteca {
     }
 
 
-    private void confirmarEmprestimo(List<Livro> livros) {
+    private void confirmarEmprestimo(List<Livro> livros) throws IllegalArgumentException {
         int size = livros.size();
         System.out.println(size);
         int[] indicesAcervo = new int [size];
@@ -113,7 +113,7 @@ public class Biblioteca {
                 System.out.println();
                 if (!isInAcervo(livros.get(j))) {
                     System.out.println("Livro não está no acervo");
-                    break;
+                    throw new IllegalArgumentException("Livro não está no acervo");
                 }
                 if (verificaIgual(livros.get(j), i)) {
                     if (verificaSeFoiEmprestado(livros.get(j))) {
@@ -121,13 +121,12 @@ public class Biblioteca {
                         indicesAcervo[j] = i;
                         break;
                     }
-                    System.out.println("Livro ja emprestado");
-                    break;
+                    //System.out.println("Livro ja emprestado");
+                    throw new IllegalArgumentException("Livro ja emprestado");
                 }
                 System.out.println("Pula");
             }
         }
-
         //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMRPESTIMO
         if (verificaIndice(indicesAcervo, -1)) {
             for (int i = 0; i < indicesAcervo.length; i++) {

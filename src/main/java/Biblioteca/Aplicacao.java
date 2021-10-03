@@ -15,10 +15,9 @@ import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
 
 public class Aplicacao {
+
     List<Feriado> feriadosList = getFeriados();
     LocalDate hoje = LocalDate.now();
-
-
 
     private static boolean isDiaUtil(LocalDate data) {
         DayOfWeek dayOfWeek = data.getDayOfWeek();
@@ -94,31 +93,36 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
+        listaLivrosDesejados.add(biblioteca.livro3);
+        listaLivrosDesejados.add(biblioteca.livro3);
+        listaLivrosDesejados.add(biblioteca.livro3);
        // listaLivrosDesejados.add(biblioteca.livro4);
 
 
-        for (Livro l : listaLivrosDesejados) {
+        /*for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
-        }
+        }*/
 
         //AQUI
         try {
             biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
+
         listaLivrosDesejados.clear();
 
         System.out.println(listaLivrosDesejados.toString());
         listaLivrosDesejados.add(biblioteca.livro10);
-        listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
+        listaLivrosDesejados.add(biblioteca.livro3);
+        listaLivrosDesejados.add(biblioteca.livro9);
         System.out.println(listaLivrosDesejados.toString());
 
         try {
             biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, gustavo);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
 
         System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
