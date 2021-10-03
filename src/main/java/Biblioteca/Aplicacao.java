@@ -121,7 +121,7 @@ public class Aplicacao {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(biblioteca.livro10.getEmprestado());
+        System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
 
         System.out.println("Teste");
 

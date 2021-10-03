@@ -129,25 +129,25 @@ public class Biblioteca {
         }
 
         //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMRPESTIMO
-        if (!verificaIndice(indicesAcervo, -1)) {
+        if (verificaIndice(indicesAcervo, -1)) {
             for (int i = 0; i < indicesAcervo.length; i++) {
                 acervo.get(indicesAcervo[i]).setEmprestado(TRUE);
             }
+            System.out.println("Emprestimo realizado");
         }
-        System.out.println("Emprestimo realizado");
-    }
-
-    private void setEmprestimo(int i) {
-        acervo.get(i).setEmprestado(TRUE);
     }
 
     private boolean verificaIndice(int[] n, int i) {
+        int conta = 0;
         for (int j=0; j < n.length; j++) {
             if(n[j] != i) {
-                return FALSE;
+                conta++;
             }
         }
-        return TRUE;
+        if (conta == n.length) {
+            return TRUE;
+        }
+        return FALSE;
     }
 
     private void setIndice(int[] n, int i) {
