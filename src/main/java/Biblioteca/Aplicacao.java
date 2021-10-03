@@ -125,7 +125,7 @@ public class Aplicacao {
         try {
             biblioteca.fazerEmprestimoDeLivro(livros, joao);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         //
 
