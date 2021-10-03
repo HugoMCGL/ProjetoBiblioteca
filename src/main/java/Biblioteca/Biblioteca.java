@@ -1,8 +1,10 @@
 package Biblioteca;
+import Biblioteca.Data.*;
 import Biblioteca.Estante.Livro;
 import Biblioteca.Exception.LimiteLivrosExeption;
 import Biblioteca.Usuarios.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,9 @@ import static java.lang.Boolean.TRUE;
 //varias outros metodos para auxiliar pegaLivro e fazerEmprestimo
 
 public class Biblioteca {
+    LocalDate dataEntrega;
+    static DataDia calculaData = new DataDia();
+
     private List<Livro> acervo;
 
      Livro livro1 = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
@@ -41,28 +46,21 @@ public class Biblioteca {
         if(pessoa instanceof  Alunos) {
             if (!isMaisQue(3, livrosEmprestimo)) {
                 confirmarEmprestimo(livrosEmprestimo);
+                dataEntrega = calculaData.calcularDataAposDiasUteis(10);
+                System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
+
             } else {
                 throw new IllegalArgumentException("Aluno não pode pegar mais de 3 livros");
             }
         } else {
             if (!isMaisQue(5, livrosEmprestimo)) {
                 confirmarEmprestimo(livrosEmprestimo);
+                dataEntrega = calculaData.calcularDataAposDiasUteis(20);
+                System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
             } else {
                 throw new IllegalArgumentException("Professor não pode pegar mais de 5 livros");
             }
         }
-
-       /* if(pessoa instanceof Professores){
-            for (Livro livro: livrosEmprestimo) {
-                ((Professores) pessoa).addLivro(livro);
-
-            }
-        }else {
-            for (Livro livro: livrosEmprestimo) {
-                ((Alunos) pessoa).addLivro(livro);
-
-            }
-        }*/
     }
 
     private boolean isMaisQue(int n, List<Livro> livrosEmprestimo) {
@@ -105,12 +103,12 @@ public class Biblioteca {
         setIndice(indicesAcervo, -1);
         for (int j = 0; j < size; j ++) {
             for (int i = 0; i < acervo.size(); i++) {
-                System.out.println();
-                System.out.println(livros.get(j).getTitulo());
-                System.out.println(acervo.get(i).getTitulo());
-                System.out.println("Igualdade: " + verificaIgual(livros.get(j), i));
-                System.out.println("Situação emprestimo: " + livros.get(j).getEmprestado());
-                System.out.println();
+                //System.out.println();
+                //System.out.println(livros.get(j).getTitulo());
+                //System.out.println(acervo.get(i).getTitulo());
+                //System.out.println("Igualdade: " + verificaIgual(livros.get(j), i));
+                //System.out.println("Situação emprestimo: " + livros.get(j).getEmprestado());
+                //System.out.println();
                 if (!isInAcervo(livros.get(j))) {
                     System.out.println("Livro não está no acervo");
                     throw new IllegalArgumentException("Livro não está no acervo");
@@ -124,10 +122,10 @@ public class Biblioteca {
                     //System.out.println("Livro ja emprestado");
                     throw new IllegalArgumentException("Livro ja emprestado");
                 }
-                System.out.println("Pula");
+                System.out.println("");
             }
         }
-        //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMRPESTIMO
+        //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMPRESTIMO
         if (verificaIndice(indicesAcervo, -1)) {
             for (int i = 0; i < indicesAcervo.length; i++) {
                 acervo.get(indicesAcervo[i]).setEmprestado(TRUE);

@@ -1,10 +1,10 @@
-package Biblioteca.Feriados;
+package Biblioteca.Data;
 
 import java.time.LocalDate;
 
 public class Feriado {
-     private LocalDate data;
-     private String descricao;
+    private LocalDate data;
+    private String descricao;
 
     public Feriado(LocalDate data, String descricao) {
         this.data = data;
