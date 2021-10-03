@@ -18,8 +18,18 @@ import static java.lang.Boolean.TRUE;
 //varias outros metodos para auxiliar pegaLivro e fazerEmprestimo
 
 public class Biblioteca {
-
     private List<Livro> acervo;
+
+     Livro livro1 = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
+     Livro livro2 = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine");
+     Livro livro3 = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
+     Livro livro4 = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
+     Livro livro5 = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
+     Livro livro6 = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
+     Livro livro7 = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
+     Livro livro8 = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
+     Livro livro9 = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
+     Livro livro10 = new Livro(10617, "Quincas Borba", "Machado de Assis", "Editora Rocco");
 
     public List<Livro> getAcervo() {
         return acervo = getLivros();
@@ -44,13 +54,14 @@ public class Biblioteca {
         if(pessoa instanceof Professores){
             for (Livro livro: livrosEmprestimo) {
                 ((Professores) pessoa).addLivro(livro);
+
             }
         }else {
             for (Livro livro: livrosEmprestimo) {
                 ((Alunos) pessoa).addLivro(livro);
+
             }
         }
-
     }
 
     private boolean isMaisQue(int n, List<Livro> livrosEmprestimo) {
@@ -74,19 +85,16 @@ public class Biblioteca {
 
     public List<Livro> getLivros() {
         List<Livro> acervo = new ArrayList<>();
-        acervo.add(new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers"));
-        acervo.add(new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine"));
-        acervo.add(new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers"));
-        acervo.add(new Livro(10611, "O saci", "Monteiro Lobato", "telecine"));
-        acervo.add(new Livro(10612, "Despedida", "Cecília Meireles", "hollywood"));
-        acervo.add(new Livro(10613, "Missa do galo", "Machado de Assis", "telecine"));
-        acervo.add(new Livro(10614, "Elegia", "Cecília Meireles", "hollywood"));
-        acervo.add(new Livro(10615, "Relógio", "Mario Quintana", "Aleph"));
-        acervo.add(new Livro(10616, "Esperança", "Mario Quintana", "Suma"));
-        acervo.add(new Livro(10617, "Quincas Borba", "Machado de Assis", "Editora Rocco"));
+        acervo.add(livro1);
+        acervo.add(livro2);
+        acervo.add(livro3);
+        acervo.add(livro4);
+        acervo.add(livro5);
+        acervo.add(livro6);
+        acervo.add(livro7);
+        acervo.add(livro8);
+        acervo.add(livro9);
+        acervo.add(livro10);
         return acervo;
     }
-
 }
-
-

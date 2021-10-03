@@ -81,18 +81,6 @@ public class Aplicacao {
         Pessoa roberto = new Professores("Roberto", 1003, "roberto@gmail.com: " + EnumClasse.Professor);
 
 
-        Livro livro1 = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
-        Livro livro2 = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine");
-        Livro livro3 = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
-        Livro livro4 = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
-        Livro livro5 = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
-        Livro livro6 = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
-        Livro livro7 = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
-        Livro livro8 = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
-        Livro livro9 = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
-        Livro livro10 = new Livro(10617, "Quincas Borba", "Machado de Assis", "Editora Rocco");
-
-
         System.out.println(inacio.toString());
         System.out.println(joao.toString());
         System.out.println(julio.toString());
@@ -101,39 +89,29 @@ public class Aplicacao {
         System.out.println(hugo.toString());
         System.out.println(roberto.toString());
 
-        System.out.println(livro1.toString());
-        System.out.println();
 
-        List<Livro> livros = new ArrayList<Livro>();
-        livros.add(livro1);
-        livros.add(livro2);
-        livros.add(livro3);
-        livros.add(livro3);
+        List<Livro> listaLivrosDesejados = new ArrayList<Livro>();
+        listaLivrosDesejados.add(biblioteca.livro1);
+        listaLivrosDesejados.add(biblioteca.livro2);
+        listaLivrosDesejados.add(biblioteca.livro3);
+       // listaLivrosDesejados.add(biblioteca.livro4);
 
-        List<Livro> livros2 = new ArrayList<Livro>();
-        livros2.add(livro1);
-        livros2.add(livro2);
-        livros2.add(livro3);
-        livros2.add(livro4);
-        livros2.add(livro5);
 
-        for (Livro l : livros) {
+        for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
         }
 
         //AQUI
         try {
-            biblioteca.fazerEmprestimoDeLivro(livros, joao);
+            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
+            listaLivrosDesejados.clear();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        //
 
-        try {
-            biblioteca.fazerEmprestimoDeLivro(livros2, gustavo);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        System.out.println(listaLivrosDesejados.toString());
+
+
 
         System.out.println("Teste");
     }
