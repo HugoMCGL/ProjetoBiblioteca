@@ -1,14 +1,18 @@
 package Biblioteca.Estante;
 
+import static java.lang.Boolean.FALSE;
+
 public class Livro {
     int isbn;
     String titulo, autor, editora;
+    boolean emprestado; //verifica se o livro foi emprestado
 
     public Livro(int isbn, String titulo, String autor, String editora) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
+        emprestado = FALSE;
     }
 
     public int getIsbn() {
@@ -21,6 +25,14 @@ public class Livro {
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public boolean getEmprestado() {
+        return emprestado;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
     }
 
     public void setTitulo(String nome) {
@@ -50,6 +62,7 @@ public class Livro {
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", editora='" + editora + '\'' +
+                ", emprestado='" + emprestado + '\'' +
                 '}';
     }
 }

@@ -68,6 +68,7 @@ public class Aplicacao {
 
         System.out.println();
         Biblioteca biblioteca = new Biblioteca();
+        biblioteca.getAcervo();
 
         System.out.println(calcularDataAposDiasUteis(4));
 
@@ -101,26 +102,39 @@ public class Aplicacao {
         System.out.println(roberto.toString());
 
         System.out.println(livro1.toString());
+        System.out.println();
 
         List<Livro> livros = new ArrayList<Livro>();
         livros.add(livro1);
         livros.add(livro2);
         livros.add(livro3);
-        livros.add(livro4);
-        livros.add(livro5);
-        livros.add(livro6);
+        livros.add(livro3);
 
+        List<Livro> livros2 = new ArrayList<Livro>();
+        livros2.add(livro1);
+        livros2.add(livro2);
+        livros2.add(livro3);
+        livros2.add(livro4);
+        livros2.add(livro5);
 
+        for (Livro l : livros) {
+            System.out.println(l.toString());
+        }
 
+        //AQUI
         try {
             biblioteca.pegaLivro(livros, joao);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
+        //
+
         try {
-            biblioteca.pegaLivro(livros, gustavo);
+            biblioteca.pegaLivro(livros2, gustavo);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
+
+        System.out.println("Teste");
     }
 }
