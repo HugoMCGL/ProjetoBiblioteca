@@ -26,16 +26,26 @@ public class Biblioteca {
 
     private List<Livro> acervo;
 
-     Livro livro1 = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
-     Livro livro2 = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine");
-     Livro livro3 = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
-     Livro livro4 = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
-     Livro livro5 = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
-     Livro livro6 = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
-     Livro livro7 = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
-     Livro livro8 = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
-     Livro livro9 = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
-     Livro livro10 = new Livro(10617, "Quincas Borba", "Machado de Assis", "Editora Rocco");
+     Livro livro1  = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
+     Livro livro2  = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine");
+     Livro livro3  = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
+     Livro livro4  = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
+     Livro livro5  = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
+     Livro livro6  = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
+     Livro livro7  = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
+     Livro livro8  = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
+     Livro livro9  = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
+     Livro livro10 = new Livro(10617, "A cabana do Pai Tomás", "Harriet Beecher Stowe", "Editora Rocco");
+     Livro livro11 = new Livro(10618, "1984", "George Orwell", "Editora Rocha");
+     Livro livro12 = new Livro(10619, "O Mundo se Despedaça", "Chinua Achebe", "Editora Ilustrador");
+     Livro livro13 = new Livro(10620, "Dom Quixote", "Miguel de Cervantes", "Editora Pause");
+     Livro livro14 = new Livro(10621, " Hamlet", "William Shakespeare", "Editora Bloco64");
+     Livro livro15 = new Livro(10622, "Cem anos de solidão", "Gabriel García Márquez", "Editora Antartida");
+     Livro livro16 = new Livro(10623, " Ilíada", "Homero", "Editora Assis");
+     Livro livro17 = new Livro(10624, "Amada", "Toni Morrison", "Editora Avenida");
+     Livro livro18 = new Livro(10625, "A Divina Comédia", "Dante Alighieri", "Editora America");
+     Livro livro19 = new Livro(10626, " Romeu e Julieta", "William Shakespeare", "Editora Global");
+     Livro livro20 = new Livro(10627, " Série Harry Potter", "JK Rowling", "Editora Brasil");
 
     public List<Livro> getAcervo() {
         return acervo = getLivros();
@@ -165,6 +175,16 @@ public class Biblioteca {
         acervo.add(livro8);
         acervo.add(livro9);
         acervo.add(livro10);
+        acervo.add(livro11);
+        acervo.add(livro12);
+        acervo.add(livro13);
+        acervo.add(livro14);
+        acervo.add(livro15);
+        acervo.add(livro16);
+        acervo.add(livro17);
+        acervo.add(livro18);
+        acervo.add(livro19);
+        acervo.add(livro20);
         return acervo;
     }
 }

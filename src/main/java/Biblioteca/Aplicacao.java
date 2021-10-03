@@ -56,9 +56,9 @@ public class Aplicacao {
         listaLivrosDesejados.clear();
 
         System.out.println(listaLivrosDesejados.toString());
-        listaLivrosDesejados.add(biblioteca.livro10);
-        listaLivrosDesejados.add(biblioteca.livro8);
-        listaLivrosDesejados.add(biblioteca.livro7);
+        listaLivrosDesejados.add(biblioteca.livro13);
+        listaLivrosDesejados.add(biblioteca.livro14);
+        listaLivrosDesejados.add(biblioteca.livro20);
         //listaLivrosDesejados.add(biblioteca.livro9);
         System.out.println(listaLivrosDesejados.toString());
 
