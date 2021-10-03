@@ -64,7 +64,6 @@ public class Biblioteca {
     private void confirmarEmprestimo(List<Livro> livros) {
         int j = 0;
         for (int i = 0; i < livros.size(); i++) {
-            System.out.println();
             if (verificaAcervo(livros.get(j).getTitulo(), i)) {
                 acervo.get(i).setEmprestado(TRUE);
                 j++;
