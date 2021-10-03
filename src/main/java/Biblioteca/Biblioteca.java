@@ -6,6 +6,7 @@ import Biblioteca.Usuarios.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 
@@ -51,7 +52,7 @@ public class Biblioteca {
             }
         }
 
-        if(pessoa instanceof Professores){
+       /* if(pessoa instanceof Professores){
             for (Livro livro: livrosEmprestimo) {
                 ((Professores) pessoa).addLivro(livro);
 
@@ -61,26 +62,98 @@ public class Biblioteca {
                 ((Alunos) pessoa).addLivro(livro);
 
             }
-        }
+        }*/
     }
 
     private boolean isMaisQue(int n, List<Livro> livrosEmprestimo) {
         return (livrosEmprestimo.size() > n);
     }
 
-    private boolean verificaAcervo(String titulo, int i) {
-        return (acervo.get(i).getTitulo().equals(titulo) && !acervo.get(i).getEmprestado());
+    /*private boolean verificaSituacaoDoEmprestimo(Livro livro, int i) {
+        if (!acervo.contains(livro)) {
+            System.out.println("Livro não está no acervo");
+        }
+        if (acervo.get(i).getTitulo().equals(livro.getTitulo())) {
+            if (!livro.getEmprestado()) {
+                System.out.println("Foi");
+                return TRUE;
+            }
+            System.out.println("Livro ja emprestado");
+            return FALSE;
+        }
+        System.out.println("Pula");
+        return FALSE;
+    }*/
+
+    private boolean verificaSeFoiEmprestado(Livro livro) {
+        return !livro.getEmprestado();
     }
 
+    private boolean verificaIgual(Livro livro, int i) {
+        return acervo.get(i).getTitulo().equals(livro.getTitulo());
+    }
+
+    private boolean isInAcervo(Livro livro) {
+        return acervo.contains(livro);
+    }
+
+
     private void confirmarEmprestimo(List<Livro> livros) {
-        int j = 0;
-        for (int i = 0; i < livros.size(); i++) {
-            if (verificaAcervo(livros.get(j).getTitulo(), i)) {
-                acervo.get(i).setEmprestado(TRUE);
-                j++;
+        int size = livros.size();
+        System.out.println(size);
+        int[] indicesAcervo = new int [size];
+        setIndice(indicesAcervo, -1);
+        for (int j = 0; j < size; j ++) {
+            for (int i = 0; i < acervo.size(); i++) {
+                System.out.println();
+                System.out.println(livros.get(j).getTitulo());
+                System.out.println(acervo.get(i).getTitulo());
+                System.out.println("Igualdade: " + verificaIgual(livros.get(j), i));
+                System.out.println("Situação emprestimo: " + livros.get(j).getEmprestado());
+                System.out.println();
+                if (!isInAcervo(livros.get(j))) {
+                    System.out.println("Livro não está no acervo");
+                    break;
+                }
+                if (verificaIgual(livros.get(j), i)) {
+                    if (verificaSeFoiEmprestado(livros.get(j))) {
+                        System.out.println("Deu certo o emprestimo");
+                        indicesAcervo[j] = i;
+                        break;
+                    }
+                    System.out.println("Livro ja emprestado");
+                    break;
+                }
+                System.out.println("Pula");
+            }
+        }
+
+        //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMRPESTIMO
+        if (!verificaIndice(indicesAcervo, -1)) {
+            for (int i = 0; i < indicesAcervo.length; i++) {
+                acervo.get(indicesAcervo[i]).setEmprestado(TRUE);
             }
         }
         System.out.println("Emprestimo realizado");
+    }
+
+    private void setEmprestimo(int i) {
+        acervo.get(i).setEmprestado(TRUE);
+    }
+
+    private boolean verificaIndice(int[] n, int i) {
+        for (int j=0; j < n.length; j++) {
+            if(n[j] != i) {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
+    private void setIndice(int[] n, int i) {
+        for (int j=0; j < n.length; j++) {
+            n[j] = i;
+        }
     }
 
     public List<Livro> getLivros() {

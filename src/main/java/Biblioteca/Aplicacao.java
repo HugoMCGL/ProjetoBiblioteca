@@ -104,15 +104,26 @@ public class Aplicacao {
         //AQUI
         try {
             biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
-            listaLivrosDesejados.clear();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        listaLivrosDesejados.clear();
+
+        System.out.println(listaLivrosDesejados.toString());
+        listaLivrosDesejados.add(biblioteca.livro10);
+        listaLivrosDesejados.add(biblioteca.livro2);
+        listaLivrosDesejados.add(biblioteca.livro3);
+        System.out.println(listaLivrosDesejados.toString());
+
+        try {
+            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, gustavo);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println(listaLivrosDesejados.toString());
-
-
+        System.out.println(biblioteca.livro10.getEmprestado());
 
         System.out.println("Teste");
+
     }
 }
