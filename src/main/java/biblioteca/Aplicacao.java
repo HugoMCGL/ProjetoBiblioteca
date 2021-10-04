@@ -58,14 +58,6 @@ public class Aplicacao {
             System.err.println(e.getMessage());
         }
 
-        System.out.println("aqui");
-        System.out.println(joao.getLivroLista().toString());
-        System.out.println();
-        listaLivrosDesejados.clear();
-        System.out.println("aqui2");
-        System.out.println(joao.getLivroLista().toString());
-        System.out.println();
-
         listaLivrosDesejados.add(biblioteca.livro4);
         listaLivrosDesejados.add(biblioteca.livro5);
         listaLivrosDesejados.add(biblioteca.livro6);
@@ -73,7 +65,6 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro9);
 
         for (Livro l : listaLivrosDesejados) {
-            System.out.println(l.toString());
         }
 
         try {
