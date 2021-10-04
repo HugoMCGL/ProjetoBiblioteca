@@ -13,10 +13,9 @@ public class Aplicacao {
 
         System.out.println();
         LocalDate dataHoje = LocalDate.now();
-        LocalDate dataTesteEntrega = LocalDate.of(2021,12,30);
+        LocalDate dataTesteEntrega = LocalDate.of(2021,12,20);
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.getAcervo();
-
 
         Pessoa inacio = new Alunos("Inacio", 2000, "Inacio@gmail.com: " + EnumClasse.ALUNO);
         Pessoa joao = new Alunos("Joao", 2001, "joao@gmail.com: " + EnumClasse.ALUNO);

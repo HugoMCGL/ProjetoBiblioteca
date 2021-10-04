@@ -11,8 +11,9 @@ import java.util.Collections;
 import java.util.List;
 public class Biblioteca {
     LocalDate dataEntrega;
+    LocalDate dataSuspensao;
     static DataDia calculaData = new DataDia();
-
+    int dia, mes, ano;
     private List<Livro> acervo;
 
      Livro livro1  = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
@@ -87,10 +88,14 @@ public class Biblioteca {
     public void devolveLivro(Pessoa pessoa, LocalDate hoje){
 
         if(hoje.isAfter(pessoa.getDataEntrega())) {
-
             pessoa.setSuspenso(true);
-            pessoa.setDiasAtraso(Period.between(pessoa.getDataEntrega(), hoje).getDays());
-            System.out.println("O aluno "+pessoa.getNome()+" será suspenso por "+pessoa.getDiasAtraso()+" dias");
+            dia = (Period.between(pessoa.getDataEntrega(), hoje).getDays());
+            mes = (Period.between(pessoa.getDataEntrega(), hoje).getMonths());
+            ano = (Period.between(pessoa.getDataEntrega(), hoje).getYears());
+
+            dataSuspensao = hoje.plusDays(dia).plusMonths(mes).plusYears(ano);
+            pessoa.setDataSuspensao(dataSuspensao);
+            System.out.println("O aluno está suspenso até a seguinte data: "+pessoa.getDataSuspensao());
             pessoa.setLivroLista(new ArrayList<Livro>());
         }else{
             System.out.println("Livros devolvidos");

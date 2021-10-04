@@ -15,7 +15,8 @@ public class Pessoa {
     private boolean suspenso;
     private List<Livro> livroLista = new ArrayList<>();
     private LocalDate dataEntrega;
-    private int diasAtraso;
+    private LocalDate dataSuspensao;
+    //private int diasAtraso, mesAtraso;
 
     public Pessoa() {
     }
@@ -79,17 +80,17 @@ public class Pessoa {
         this.dataEntrega = dataEntrega;
     }
 
-    public int getDiasAtraso() {
-        return diasAtraso;
-    }
-
-    public void setDiasAtraso(int diasAtraso) {
-        this.diasAtraso = diasAtraso;
-    }
-
     public void devolveLivrosAlugados(){
         if (!this.livroLista.isEmpty())
             this.livroLista.clear();
+    }
+
+    public LocalDate getDataSuspensao() {
+        return dataSuspensao;
+    }
+
+    public void setDataSuspensao(LocalDate dataSuspensao) {
+        this.dataSuspensao = dataSuspensao;
     }
 
     @Override
