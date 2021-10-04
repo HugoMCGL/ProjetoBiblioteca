@@ -1,6 +1,6 @@
-package Biblioteca.usuarios;
+package biblioteca.usuarios;
 
-import Biblioteca.estante.Livro;
+import biblioteca.estante.Livro;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

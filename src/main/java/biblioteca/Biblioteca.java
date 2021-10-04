@@ -1,7 +1,7 @@
-package Biblioteca;
-import Biblioteca.data.*;
-import Biblioteca.estante.Livro;
-import Biblioteca.usuarios.*;
+package biblioteca;
+import biblioteca.data.*;
+import biblioteca.estante.Livro;
+import biblioteca.usuarios.*;
 
 import java.time.LocalDate;
 import java.time.Period;
