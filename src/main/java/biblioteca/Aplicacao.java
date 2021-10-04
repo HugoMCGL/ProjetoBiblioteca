@@ -26,7 +26,7 @@ public class Aplicacao {
         Pessoa hugo = new Professores("Hugo", 1002, "Hugo@gmail.com: " + EnumClasse.PROFESSOR);
         Pessoa roberto = new Professores("Roberto", 1003, "roberto@gmail.com: " + EnumClasse.PROFESSOR);
 
-        System.out.println("Bem vindo a biblioteca:\n");
+        System.out.println("Bem vindos a biblioteca:\n");
 
         System.out.println(inacio.toString());
         System.out.println(joao.toString());
@@ -35,8 +35,9 @@ public class Aplicacao {
         System.out.println(gustavo.toString());
         System.out.println(hugo.toString());
         System.out.println(roberto.toString());
+        System.out.println();
 
-
+        System.out.println("Empréstimos:");
 
         List<Livro> listaLivrosDesejados = new ArrayList<Livro>();
         listaLivrosDesejados.add(biblioteca.livro1);
