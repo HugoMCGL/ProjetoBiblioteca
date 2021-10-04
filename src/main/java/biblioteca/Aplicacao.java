@@ -44,10 +44,8 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
 
-
         System.out.println();
         for (Livro l : listaLivrosDesejados) {
-            System.out.println(l.toString());
         }
 
 
@@ -57,6 +55,8 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
+        listaLivrosDesejados.clear();
 
         listaLivrosDesejados.add(biblioteca.livro4);
         listaLivrosDesejados.add(biblioteca.livro5);
