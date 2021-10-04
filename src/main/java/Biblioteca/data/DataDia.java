@@ -1,4 +1,4 @@
-package Biblioteca.Data;
+package Biblioteca.data;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

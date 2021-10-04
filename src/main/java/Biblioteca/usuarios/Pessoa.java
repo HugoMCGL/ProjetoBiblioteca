@@ -1,7 +1,8 @@
-package Biblioteca.Usuarios;
+package Biblioteca.usuarios;
 
-import Biblioteca.Estante.Livro;
+import Biblioteca.estante.Livro;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ public class Pessoa {
     private String email;
     private boolean emprestimoRealizado;
     private boolean suspenso;
-    public List<Livro> livroLista = new ArrayList<>();
+    private List<Livro> livroLista = new ArrayList<>();
+    private LocalDate dataEntrega;
+    private int diasAtraso;
 
     public Pessoa() {
     }
@@ -66,6 +69,22 @@ public class Pessoa {
 
     public void setLivroLista(List<Livro> livroList) {
         this.livroLista = livroList;
+    }
+
+    public LocalDate getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(LocalDate dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    public int getDiasAtraso() {
+        return diasAtraso;
+    }
+
+    public void setDiasAtraso(int diasAtraso) {
+        this.diasAtraso = diasAtraso;
     }
 
     @Override

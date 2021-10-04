@@ -1,9 +1,10 @@
 package Biblioteca;
-import Biblioteca.Data.*;
-import Biblioteca.Estante.Livro;
-import Biblioteca.Usuarios.*;
+import Biblioteca.data.*;
+import Biblioteca.estante.Livro;
+import Biblioteca.usuarios.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,12 +60,10 @@ public class Biblioteca {
             dataEntrega = calculaData.calcularDataAposDiasUteis(20);
         }
         confirmarEmprestimo(livrosEmprestimo, pessoa);
-
-        pessoa.livroLista = List.copyOf(livrosEmprestimo);
-        //System.out.println(pessoa.livroLista.toString());
+        pessoa.setLivroLista(List.copyOf(livrosEmprestimo));
+        pessoa.setDataEntrega(dataEntrega);
         pessoa.setEmprestimoRealizado(true);
         System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
-        //livrosEmprestimo.clear();
     }
 
     private void verificaSePessoaSuspensa(Pessoa pessoa) {
@@ -117,8 +116,16 @@ public class Biblioteca {
         return acervo.get(i).getTitulo().equals(livro.getTitulo());
     }
 
-    private void devolveLivro(){
+    public void devolveLivro(Pessoa pessoa, LocalDate hoje){
 
+        if(hoje.isAfter(pessoa.getDataEntrega())) {
+
+            pessoa.setSuspenso(true);
+            pessoa.setDiasAtraso(Period.between(pessoa.getDataEntrega(), hoje).getDays());
+            System.out.println("O aluno "+pessoa.getNome()+" será suspenso por "+pessoa.getDiasAtraso()+" dias");
+        }else{
+            System.out.println("ta safe");
+        }
     }
 
     private void isInAcervo(Livro livro) {

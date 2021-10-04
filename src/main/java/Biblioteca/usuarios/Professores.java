@@ -1,10 +1,4 @@
-package Biblioteca.Usuarios;
-
-import Biblioteca.Estante.Livro;
-import Biblioteca.Exception.LimiteLivrosExeption;
-
-import java.util.ArrayList;
-import java.util.List;
+package Biblioteca.usuarios;
 
 public class Professores extends Pessoa {
    // private List<Livro> livrosAlugados;

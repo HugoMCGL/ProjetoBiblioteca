@@ -1,4 +1,4 @@
-package Biblioteca.Exception;
+package Biblioteca.exception;
 
 public class LimiteLivrosExeption extends Exception {
 

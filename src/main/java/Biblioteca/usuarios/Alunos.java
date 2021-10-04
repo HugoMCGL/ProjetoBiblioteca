@@ -1,7 +1,7 @@
-package Biblioteca.Usuarios;
+package Biblioteca.usuarios;
 
-import Biblioteca.Estante.Livro;
-import Biblioteca.Exception.LimiteLivrosExeption;
+import Biblioteca.estante.Livro;
+import Biblioteca.exception.LimiteLivrosExeption;
 
 import java.util.ArrayList;
 import java.util.List;

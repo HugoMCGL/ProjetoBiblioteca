@@ -1,8 +1,9 @@
 package Biblioteca;
 
-import Biblioteca.Estante.*;
-import Biblioteca.Usuarios.*;
+import Biblioteca.estante.*;
+import Biblioteca.usuarios.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class Aplicacao {
     public static void main(String[] args)  {
 
         System.out.println();
+        LocalDate dataHoje = LocalDate.now();
+        LocalDate dataTesteEntrega = LocalDate.of(2021,12,30);
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.getAcervo();
 
@@ -56,11 +59,11 @@ public class Aplicacao {
         }
 
         System.out.println("aqui");
-        System.out.println(joao.livroLista.toString());
+        System.out.println(joao.getLivroLista().toString());
         System.out.println();
         listaLivrosDesejados.clear();
         System.out.println("aqui2");
-        System.out.println(joao.livroLista.toString());
+        System.out.println(joao.getLivroLista().toString());
         System.out.println();
         //System.out.println(listaLivrosDesejados.toString());
 
@@ -99,9 +102,14 @@ public class Aplicacao {
         }
             listaLivrosDesejados.clear();
 
-        System.out.println(gustavo.livroLista.toString());
-        System.out.println(inacio.livroLista.toString());
-        System.out.println(joao.livroLista.toString());
+        System.out.println(gustavo.getLivroLista().toString());
+        System.out.println(gustavo.getDataEntrega());
+        System.out.println(inacio.getLivroLista().toString());
+        System.out.println(inacio.getDataEntrega());
+
+        biblioteca.devolveLivro(inacio, dataTesteEntrega);
+
+        System.out.println(joao.getLivroLista().toString());
 
        // System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
 
