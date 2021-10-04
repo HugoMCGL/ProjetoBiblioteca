@@ -60,7 +60,7 @@ public class Biblioteca {
         }
         confirmarEmprestimo(livrosEmprestimo, pessoa);
 
-        pessoa.livroLista = livrosEmprestimo;
+        pessoa.livroLista = List.copyOf(livrosEmprestimo);
         //System.out.println(pessoa.livroLista.toString());
         pessoa.setEmprestimoRealizado(true);
         System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");

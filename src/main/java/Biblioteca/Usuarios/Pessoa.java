@@ -12,7 +12,7 @@ public class Pessoa {
     private String email;
     private boolean emprestimoRealizado;
     private boolean suspenso;
-    public static List<Livro> livroLista = new ArrayList<>();
+    public List<Livro> livroLista = new ArrayList<>();
 
     public Pessoa() {
     }
