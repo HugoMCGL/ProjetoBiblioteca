@@ -1,6 +1,6 @@
-package Biblioteca.usuarios;
+package biblioteca.usuarios;
 
-import Biblioteca.estante.Livro;
+import biblioteca.estante.Livro;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +85,11 @@ public class Pessoa {
 
     public void setDiasAtraso(int diasAtraso) {
         this.diasAtraso = diasAtraso;
+    }
+
+    public void devolveLivrosAlugados(){
+        if (!this.livroLista.isEmpty())
+            this.livroLista.clear();
     }
 
     @Override

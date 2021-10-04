@@ -1,7 +1,7 @@
-package Biblioteca;
+package biblioteca;
 
-import Biblioteca.estante.*;
-import Biblioteca.usuarios.*;
+import biblioteca.estante.*;
+import biblioteca.usuarios.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class Aplicacao {
 
         biblioteca.devolveLivro(inacio, dataTesteEntrega);
 
-        System.out.println(joao.getLivroLista().toString());
+        System.out.println(inacio.getLivroLista());
 
        // System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
 

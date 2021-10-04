@@ -1,12 +1,13 @@
-package Biblioteca;
-import Biblioteca.data.*;
-import Biblioteca.estante.Livro;
-import Biblioteca.usuarios.*;
+package biblioteca;
+import biblioteca.data.*;
+import biblioteca.estante.Livro;
+import biblioteca.usuarios.*;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //Acervo adicionado como atributo da bibloteca para guardar os livros dispoiveis dentro dela,
@@ -123,8 +124,10 @@ public class Biblioteca {
             pessoa.setSuspenso(true);
             pessoa.setDiasAtraso(Period.between(pessoa.getDataEntrega(), hoje).getDays());
             System.out.println("O aluno "+pessoa.getNome()+" será suspenso por "+pessoa.getDiasAtraso()+" dias");
+            pessoa.setLivroLista(new ArrayList<Livro>());
         }else{
-            System.out.println("ta safe");
+            System.out.println("Livros devolvidos");
+            pessoa.setLivroLista(new ArrayList<Livro>());
         }
     }
 

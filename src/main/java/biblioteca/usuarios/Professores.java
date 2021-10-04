@@ -1,4 +1,4 @@
-package Biblioteca.usuarios;
+package biblioteca.usuarios;
 
 public class Professores extends Pessoa {
    // private List<Livro> livrosAlugados;
