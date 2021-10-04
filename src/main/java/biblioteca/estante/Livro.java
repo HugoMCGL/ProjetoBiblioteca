@@ -5,7 +5,7 @@ public class Livro {
 
     int isbn;
     String titulo, autor, editora;
-    boolean emprestado; //verifica se o livro foi emprestado
+    boolean emprestado;
 
     public Livro(int isbn, String titulo, String autor, String editora) {
         this.isbn = isbn;
@@ -14,7 +14,6 @@ public class Livro {
         this.editora = editora;
         emprestado = false;
     }
-
     public int getIsbn() {
         return isbn;
     }

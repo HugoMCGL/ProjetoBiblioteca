@@ -43,7 +43,8 @@ public class DataDia {
     }
 
     public LocalDate calcularDataAposDiasUteis(int diasUteisDesejado) {
-        LocalDate data = LocalDate.now();//hoje + 10 dias úteis
+        LocalDate data = LocalDate.now();
+
         int diasUteis = 0;
 
         while(diasUteis < diasUteisDesejado) {
