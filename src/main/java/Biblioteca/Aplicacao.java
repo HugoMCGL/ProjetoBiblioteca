@@ -37,7 +37,7 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
-        //listaLivrosDesejados.add(biblioteca.livro3);
+        //listaLivrosDesejados.add(biblioteca.livro4);
         //listaLivrosDesejados.add(biblioteca.livro3);
         //listaLivrosDesejados.add(biblioteca.livro3);
        // listaLivrosDesejados.add(biblioteca.livro4);
@@ -54,15 +54,23 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        listaLivrosDesejados.clear();
 
-        System.out.println(listaLivrosDesejados.toString());
+        System.out.println("aqui");
+        System.out.println(joao.livroLista.toString());
+        System.out.println();
+        listaLivrosDesejados.clear();
+        System.out.println("aqui2");
+        System.out.println(joao.livroLista.toString());
+        System.out.println();
+        //System.out.println(listaLivrosDesejados.toString());
 
         listaLivrosDesejados.add(biblioteca.livro4);
         listaLivrosDesejados.add(biblioteca.livro5);
         listaLivrosDesejados.add(biblioteca.livro6);
-      //  listaLivrosDesejados.add(biblioteca.livro7);
-    //    listaLivrosDesejados.add(biblioteca.livro9);
+        listaLivrosDesejados.add(biblioteca.livro7);
+        listaLivrosDesejados.add(biblioteca.livro9);
+        //listaLivrosDesejados.add(biblioteca.livro8);
+        //listaLivrosDesejados.add(biblioteca.livro10);
 
         for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
@@ -78,7 +86,7 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro11);
         listaLivrosDesejados.add(biblioteca.livro12);
         listaLivrosDesejados.add(biblioteca.livro13);
-        //listaLivrosDesejados.add(biblioteca.livro13);
+        //listaLivrosDesejados.add(biblioteca.livro20);
 
         for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
@@ -91,9 +99,13 @@ public class Aplicacao {
         }
             listaLivrosDesejados.clear();
 
-        System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
+        System.out.println(gustavo.livroLista.toString());
+        System.out.println(inacio.livroLista.toString());
+        System.out.println(joao.livroLista.toString());
 
-        System.out.println("Teste");
+       // System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
+
+        //System.out.println("Teste");
 
     }
 }

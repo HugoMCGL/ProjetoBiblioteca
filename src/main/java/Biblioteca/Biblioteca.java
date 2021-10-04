@@ -58,16 +58,19 @@ public class Biblioteca {
             isMaisQue(5, livrosEmprestimo);
             dataEntrega = calculaData.calcularDataAposDiasUteis(20);
         }
-        confirmarEmprestimo(livrosEmprestimo);
+        confirmarEmprestimo(livrosEmprestimo, pessoa);
+
+        pessoa.livroLista = livrosEmprestimo;
+        //System.out.println(pessoa.livroLista.toString());
         pessoa.setEmprestimoRealizado(true);
         System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
-        livrosEmprestimo.clear();
+        //livrosEmprestimo.clear();
     }
 
     private void verificaSePessoaSuspensa(Pessoa pessoa) {
         if(pessoa.isSuspenso()) {
-            System.err.println("Você está suspenso por não devolver os livros no prazo");
-            //throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
+            //System.err.println("Você está suspenso por não devolver os livros no prazo");
+            throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
         }
     }
 
@@ -83,8 +86,8 @@ public class Biblioteca {
 
     private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
         if (pessoa.isEmprestimoRealizado()) {
-            System.err.println("Você já realizou emprestimo");
-            //throw new IllegalArgumentException("Você já realizou emprestimo");
+            //System.err.println("Você já realizou emprestimo");
+            throw new IllegalArgumentException("Você já realizou emprestimo");
         }
     }
 
@@ -114,9 +117,9 @@ public class Biblioteca {
         return acervo.get(i).getTitulo().equals(livro.getTitulo());
     }
 
-    /*private boolean isInAcervo(Livro livro) {
-        return acervo.contains(livro);
-    }*/
+    private void devolveLivro(){
+
+    }
 
     private void isInAcervo(Livro livro) {
         if (!acervo.contains(livro)) {
@@ -125,7 +128,7 @@ public class Biblioteca {
     }
 
 
-    private void confirmarEmprestimo(List<Livro> livros) throws IllegalArgumentException {
+        private void confirmarEmprestimo(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
         int size = livros.size();
         System.out.println(size);
         int[] indicesAcervo = new int [size];
@@ -151,12 +154,15 @@ public class Biblioteca {
                     break;
                 }
             }
+
         }
         //AQUI É PARA VERFICAR OS IDICES E VER SE FORAM SALVOS PARA MUDAR O EMPRESTIMO
         if (verificaIndice(indicesAcervo, -1)) {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(true);
             }
+            //pessoa.livroList = livros;
+           // System.out.println(pessoa.livroList.toString());
             System.out.println("Emprestimo realizado");
         }
     }

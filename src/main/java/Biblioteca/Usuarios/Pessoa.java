@@ -2,6 +2,7 @@ package Biblioteca.Usuarios;
 
 import Biblioteca.Estante.Livro;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pessoa {
@@ -11,7 +12,7 @@ public class Pessoa {
     private String email;
     private boolean emprestimoRealizado;
     private boolean suspenso;
-    private List<Livro> livroList;
+    public static List<Livro> livroLista = new ArrayList<>();
 
     public Pessoa() {
     }
@@ -58,6 +59,15 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Livro> getLivroLista() {
+        return livroLista;
+    }
+
+    public void setLivroLista(List<Livro> livroList) {
+        this.livroLista = livroList;
+    }
+
     @Override
     public String toString() {
         return "Pessoa{" +
