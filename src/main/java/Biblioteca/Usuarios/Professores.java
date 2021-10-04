@@ -22,7 +22,6 @@ public class Professores extends Pessoa {
         }
         throw new LimiteLivrosExeption();
     }
-
 }
 
 

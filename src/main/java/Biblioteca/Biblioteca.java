@@ -53,11 +53,12 @@ public class Biblioteca {
         verificaSePessoaSuspensa(pessoa);
         if(pessoa instanceof Alunos) {
             isMaisQue(3, livrosEmprestimo);
+            dataEntrega = calculaData.calcularDataAposDiasUteis(10);
         } else {
             isMaisQue(5, livrosEmprestimo);
+            dataEntrega = calculaData.calcularDataAposDiasUteis(20);
         }
         confirmarEmprestimo(livrosEmprestimo);
-        dataEntrega = calculaData.calcularDataAposDiasUteis(10);
         pessoa.setEmprestimoRealizado(true);
         System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
         livrosEmprestimo.clear();
@@ -65,7 +66,8 @@ public class Biblioteca {
 
     private void verificaSePessoaSuspensa(Pessoa pessoa) {
         if(pessoa.isSuspenso()) {
-            throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
+            System.err.println("Você está suspenso por não devolver os livros no prazo");
+            //throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
         }
     }
 
@@ -81,7 +83,8 @@ public class Biblioteca {
 
     private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
         if (pessoa.isEmprestimoRealizado()) {
-            throw new IllegalArgumentException("Você já realizou emprestimo");
+            System.err.println("Você já realizou emprestimo");
+            //throw new IllegalArgumentException("Você já realizou emprestimo");
         }
     }
 

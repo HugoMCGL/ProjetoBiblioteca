@@ -47,30 +47,22 @@ public class Aplicacao {
             System.out.println(l.toString());
         }
 
-
-
         //AQUI
         try {
             biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
-
-        try {
-            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, joao);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-        //listaLivrosDesejados.clear();
+        listaLivrosDesejados.clear();
 
         System.out.println(listaLivrosDesejados.toString());
-        listaLivrosDesejados.add(biblioteca.livro10);
-        listaLivrosDesejados.add(biblioteca.livro8);
-        listaLivrosDesejados.add(biblioteca.livro1);
-        listaLivrosDesejados.add(biblioteca.livro7);
-        listaLivrosDesejados.add(biblioteca.livro9);
+
+        listaLivrosDesejados.add(biblioteca.livro4);
+        listaLivrosDesejados.add(biblioteca.livro5);
+        listaLivrosDesejados.add(biblioteca.livro6);
+      //  listaLivrosDesejados.add(biblioteca.livro7);
+    //    listaLivrosDesejados.add(biblioteca.livro9);
 
         for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
@@ -81,12 +73,13 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-
         listaLivrosDesejados.clear();
+
         listaLivrosDesejados.add(biblioteca.livro11);
         listaLivrosDesejados.add(biblioteca.livro12);
         listaLivrosDesejados.add(biblioteca.livro13);
-        listaLivrosDesejados.add(biblioteca.livro13);
+        //listaLivrosDesejados.add(biblioteca.livro13);
+
         for (Livro l : listaLivrosDesejados) {
             System.out.println(l.toString());
         }
@@ -96,6 +89,7 @@ public class Aplicacao {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+            listaLivrosDesejados.clear();
 
         System.out.println("Emprestimo do livro " + biblioteca.livro10.getTitulo() + ": " + biblioteca.livro10.getEmprestado());
 
