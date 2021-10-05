@@ -110,21 +110,25 @@ public class Biblioteca {
         }
     }
 
-    public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
-
+    public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada) {
         retornarLivro(pessoa.getLivroLista(), pessoa);
         verificaSePessoaNaoEmprestou(pessoa);
-        if(entregaRealizada.isAfter(pessoa.getDataEntrega())) {
-            pessoa.setSuspenso(true);
-            dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
-            mes = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getMonths());
-            ano = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getYears());
+        if (entregaRealizada.isAfter(pessoa.getDataEntrega())) {
+            if (pessoa instanceof Alunos) {
+                pessoa.setSuspenso(true);
+                dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
+                mes = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getMonths());
+                ano = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getYears());
 
-            dataSuspensao = entregaRealizada.plusDays(dia).plusMonths(mes).plusYears(ano);
-            pessoa.setDataSuspensao(dataSuspensao);
-            System.out.println("O aluno está suspenso até a seguinte data: "+pessoa.getDataSuspensao());
-            pessoa.setLivroLista(new ArrayList<Livro>());
-        }else{
+                dataSuspensao = entregaRealizada.plusDays(dia).plusMonths(mes).plusYears(ano);
+                pessoa.setDataSuspensao(dataSuspensao);
+                System.out.println("O aluno está suspenso até a seguinte data: " + pessoa.getDataSuspensao());
+
+                pessoa.setLivroLista(new ArrayList<Livro>());
+            }else{
+                System.out.println("O professor atrasou a data de entrega dos livros");
+            }
+        } else {
             System.out.println("Livros devolvidos");
             pessoa.setLivroLista(new ArrayList<Livro>());
         }
