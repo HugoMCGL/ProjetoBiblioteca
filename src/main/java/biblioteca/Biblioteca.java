@@ -37,7 +37,6 @@ public class Biblioteca {
     }
 
     private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
-        //soma a data de entrega + 10 ou 20 + dias de atraso
         if (pessoa.getDataEntrega() != null) {
             if (pessoa instanceof Alunos) {
                 if (hoje.isAfter(pessoa.getDataSuspensao())) {
