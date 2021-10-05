@@ -17,7 +17,7 @@ public class Biblioteca {
     private List<Livro> acervo;
 
      Livro livro1  = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
-     Livro livro2  = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecine");
+     Livro livro2  = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecinez");
      Livro livro3  = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
      Livro livro4  = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
      Livro livro5  = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
@@ -109,7 +109,6 @@ public class Biblioteca {
     }
     private void confirmarEmprestimo(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
         int size = livros.size();
-        System.out.println(size);
         int[] indicesAcervo = new int [size];
         Arrays.fill(indicesAcervo, -1);
         for (int j = 0; j < size; j ++) {
@@ -128,6 +127,7 @@ public class Biblioteca {
         if (verificaIndice(indicesAcervo, -1)) {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(true);
+
             }
             System.out.println("Emprestimo realizado");
         }

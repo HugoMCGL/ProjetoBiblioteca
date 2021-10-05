@@ -9,11 +9,11 @@ import java.util.List;
 
 public class Aplicacao {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         System.out.println();
         LocalDate dataHoje = LocalDate.now();
-        LocalDate dataTesteEntrega = LocalDate.of(2021,12,20);
+        LocalDate dataTesteEntrega = LocalDate.of(2021, 12, 20);
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.getAcervo();
 
@@ -26,7 +26,6 @@ public class Aplicacao {
         Pessoa roberto = new Professores("Roberto", 1003, "roberto@gmail.com: " + EnumClasse.PROFESSOR);
 
         System.out.println("Bem vindos a biblioteca:\n");
-
         System.out.println(inacio.toString());
         System.out.println(joao.toString());
         System.out.println(julio.toString());
@@ -36,15 +35,15 @@ public class Aplicacao {
         System.out.println(roberto.toString());
         System.out.println();
 
-        System.out.println("Empréstimos:");
+        System.out.println("Empréstimos:\n");
 
         List<Livro> listaLivrosDesejados = new ArrayList<Livro>();
         listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
 
-        System.out.println();
-        for (Livro l : listaLivrosDesejados) {
+        for (int i = 0; i < listaLivrosDesejados.size(); i++) {
+            System.out.println(listaLivrosDesejados.get(i).toString());
         }
 
 
@@ -63,40 +62,50 @@ public class Aplicacao {
         listaLivrosDesejados.add(biblioteca.livro7);
         listaLivrosDesejados.add(biblioteca.livro9);
 
-        for (Livro l : listaLivrosDesejados) {
+        for (int i = 0; i < listaLivrosDesejados.size(); i++) {
+            System.out.println(listaLivrosDesejados.get(i).toString());
         }
 
-        try {
-            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, gustavo);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        listaLivrosDesejados.clear();
+            for (Livro l : listaLivrosDesejados) {
+            }
 
-        listaLivrosDesejados.add(biblioteca.livro11);
-        listaLivrosDesejados.add(biblioteca.livro12);
-        listaLivrosDesejados.add(biblioteca.livro13);
-
-
-        for (Livro l : listaLivrosDesejados) {
-            System.out.println(l.toString());
-        }
-
-        try {
-            biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, inacio);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+            try {
+                biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, gustavo);
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
             listaLivrosDesejados.clear();
 
-        System.out.println(gustavo.getLivroLista().toString());
-        System.out.println(gustavo.getDataEntrega());
-        System.out.println(inacio.getLivroLista().toString());
-        System.out.println(inacio.getDataEntrega());
+            listaLivrosDesejados.add(biblioteca.livro11);
+            listaLivrosDesejados.add(biblioteca.livro12);
+            listaLivrosDesejados.add(biblioteca.livro13);
 
-        biblioteca.devolveLivro(inacio, dataTesteEntrega);
+            for (int i = 0; i < listaLivrosDesejados.size(); i++) {
 
-        System.out.println(inacio.getLivroLista());
+                System.out.println(listaLivrosDesejados.get(i).toString());
+            }
 
-    }
-}
+
+                for (Livro l : listaLivrosDesejados) {
+                    System.out.println(l.toString());
+                }
+
+                try {
+                    biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, inacio);
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+                listaLivrosDesejados.clear();
+
+                System.out.println(gustavo.getLivroLista().toString());
+                System.out.println(gustavo.getDataEntrega());
+                System.out.println(inacio.getLivroLista().toString());
+                System.out.println(inacio.getDataEntrega());
+
+                biblioteca.devolveLivro(inacio, dataTesteEntrega);
+
+                System.out.println(inacio.getLivroLista());
+
+            }
+        }
+
