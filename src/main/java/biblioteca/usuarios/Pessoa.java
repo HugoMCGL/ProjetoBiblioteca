@@ -8,18 +8,14 @@ import java.util.List;
 
 public class Pessoa {
 
-    private String nome;
-    private double matricula;
-    private String email;
-    private boolean emprestimoRealizado;
-    private boolean suspenso;
-    private List<Livro> livroLista = new ArrayList<>();
-    private LocalDate dataEntrega;
-    private LocalDate dataSuspensao;
-    //private int diasAtraso, mesAtraso;
-
-    public Pessoa() {
-    }
+    protected final String nome;
+    protected final double matricula;
+    protected final String email;
+    protected boolean emprestimoRealizado;
+    protected boolean suspenso;
+    protected List<Livro> livroLista = new ArrayList<>();
+    protected LocalDate dataEntrega;
+    protected LocalDate dataSuspensao;
 
     public Pessoa(String nome, double matricula, String email) {
         this.nome = nome;
@@ -29,7 +25,7 @@ public class Pessoa {
         suspenso = false;
     }
 
-    public boolean isSuspenso() {
+    public boolean getSuspenso() {
         return suspenso;
     }
 
@@ -41,27 +37,12 @@ public class Pessoa {
         this.emprestimoRealizado = emprestimoRealizado;
     }
 
-    public boolean isEmprestimoRealizado() {
+    public boolean getEmprestimoRealizado() {
         return emprestimoRealizado;
     }
 
     public String getNome() {
         return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public double getMatricula() {
-        return matricula;
-    }
-    public void setMatricula(double matricula) {
-        this.matricula = matricula;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public List<Livro> getLivroLista() {
@@ -80,10 +61,6 @@ public class Pessoa {
         this.dataEntrega = dataEntrega;
     }
 
-    public void devolveLivrosAlugados(){
-        if (!this.livroLista.isEmpty())
-            this.livroLista.clear();
-    }
 
     public LocalDate getDataSuspensao() {
         return dataSuspensao;

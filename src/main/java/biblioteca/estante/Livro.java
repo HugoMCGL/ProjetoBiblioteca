@@ -1,6 +1,5 @@
 package biblioteca.estante;
 
-
 public class Livro {
 
     int isbn;
@@ -14,13 +13,6 @@ public class Livro {
         this.editora = editora;
         emprestado = false;
     }
-    public int getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitulo() {
         return titulo;
@@ -32,26 +24,6 @@ public class Livro {
 
     public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
-    }
-
-    public void setTitulo(String nome) {
-        this.titulo = nome;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditora() {
-        return editora;
-    }
-
-    public void setEditora(String editora) {
-        this.editora = editora;
     }
 
     @Override

@@ -1,14 +1,14 @@
 package biblioteca;
+
 import biblioteca.data.*;
 import biblioteca.estante.Livro;
 import biblioteca.usuarios.*;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
 public class Biblioteca {
 
     LocalDate dataEntrega;
@@ -17,34 +17,9 @@ public class Biblioteca {
     int dia, mes, ano;
     private List<Livro> acervo;
 
-     Livro livro1  = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
-     Livro livro2  = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecinez");
-     Livro livro3  = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
-     Livro livro4  = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
-     Livro livro5  = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
-     Livro livro6  = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
-     Livro livro7  = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
-     Livro livro8  = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
-     Livro livro9  = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
-     Livro livro10 = new Livro(10617, "A cabana do Pai Tomás", "Harriet Beecher Stowe", "Editora Rocco");
-     Livro livro11 = new Livro(10618, "1984", "George Orwell", "Editora Rocha");
-     Livro livro12 = new Livro(10619, "O Mundo se Despedaça", "Chinua Achebe", "Editora Ilustrador");
-     Livro livro13 = new Livro(10620, "Dom Quixote", "Miguel de Cervantes", "Editora Pause");
-     Livro livro14 = new Livro(10621, " Hamlet", "William Shakespeare", "Editora Bloco64");
-     Livro livro15 = new Livro(10622, "Cem anos de solidão", "Gabriel García Márquez", "Editora Antartida");
-     Livro livro16 = new Livro(10623, " Ilíada", "Homero", "Editora Assis");
-     Livro livro17 = new Livro(10624, "Amada", "Toni Morrison", "Editora Avenida");
-     Livro livro18 = new Livro(10625, "A Divina Comédia", "Dante Alighieri", "Editora America");
-     Livro livro19 = new Livro(10626, " Romeu e Julieta", "William Shakespeare", "Editora Global");
-     Livro livro20 = new Livro(10627, " Série Harry Potter", "JK Rowling", "Editora Brasil");
-
-    public List<Livro> getAcervo() {
-        return acervo = getLivros();
-    }
-
     public void fazerEmprestimoDeLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException {
 
-        verificaSeAcabouDiasDeSuspensao(pessoa, LocalDate.of(2022, 03, 01));
+        verificaSeAcabouDiasDeSuspensao(pessoa, LocalDate.now());
         verificaSePessoaJaEmprestou(pessoa);
         verificaSePessoaSuspensa(pessoa);
         if(pessoa instanceof Alunos) {
@@ -54,11 +29,11 @@ public class Biblioteca {
             isMaisQue(5, livrosEmprestimo);
             dataEntrega = calculaData.calcularDataAposDiasUteis(20);
         }
-        confirmarEmprestimo(livrosEmprestimo, pessoa);
+        confirmarEmprestimo(livrosEmprestimo);
         pessoa.setLivroLista(List.copyOf(livrosEmprestimo));
         pessoa.setDataEntrega(dataEntrega);
         pessoa.setEmprestimoRealizado(true);
-        System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
+        System.out.println("O empréstimo precisa ser devolvido até a data: "+dataEntrega+"\n");
     }
 
     private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
@@ -68,7 +43,7 @@ public class Biblioteca {
                 if (hoje.isAfter(pessoa.getDataSuspensao())) {
                     System.out.println(pessoa.getNome() + " não está mais suspenso");
                     pessoa.setSuspenso(false);
-                    System.out.println(pessoa.isSuspenso());
+                    System.out.println(pessoa.getSuspenso());
                 } else {
                     throw new IllegalArgumentException(pessoa.getNome() + " ainda suspenso");
                 }
@@ -79,9 +54,8 @@ public class Biblioteca {
 
 
     private void verificaSePessoaSuspensa(Pessoa pessoa) {
-        if(pessoa.isSuspenso()) {
-            //System.err.println("Você está suspenso por não devolver os livros no prazo");
-            throw new IllegalArgumentException("Você está suspenso realizou emprestimo");
+        if(pessoa.getSuspenso()) {
+            throw new IllegalArgumentException("Você está suspenso por não devolver os livros no prazo");
         }
     }
     private void isMaisQue(int n, List<Livro> livrosEmprestimo) {
@@ -90,11 +64,11 @@ public class Biblioteca {
         }
     }
     private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
-        if (pessoa.isEmprestimoRealizado()) {
+        if (pessoa.getEmprestimoRealizado()) {
             throw new IllegalArgumentException("Você já realizou emprestimo");
         }
     }
-    private void verificaSeFoiEmprestado(Livro livro) {
+    private void verificaSeLivroFoiEmprestado(Livro livro) {
         if(livro.getEmprestado()) {
             throw new IllegalArgumentException("Livro ja emprestado");
         }
@@ -105,33 +79,28 @@ public class Biblioteca {
     }
 
     private void verificaSePessoaNaoEmprestou(Pessoa pessoa) {
-        if (!pessoa.isEmprestimoRealizado()) {
+        if (!pessoa.getEmprestimoRealizado()) {
             throw new IllegalArgumentException("Você não realizou emprestimo");
         }
     }
 
-    public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada) {
-        retornarLivro(pessoa.getLivroLista(), pessoa);
+    public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
+
+        retornarLivro(pessoa.getLivroLista());
         verificaSePessoaNaoEmprestou(pessoa);
-        if (entregaRealizada.isAfter(pessoa.getDataEntrega())) {
-            if (pessoa instanceof Alunos) {
-                pessoa.setSuspenso(true);
-                dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
-                mes = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getMonths());
-                ano = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getYears());
+        if(entregaRealizada.isAfter(pessoa.getDataEntrega())) {
+            pessoa.setSuspenso(true);
+            dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
+            mes = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getMonths());
+            ano = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getYears());
 
-                dataSuspensao = entregaRealizada.plusDays(dia).plusMonths(mes).plusYears(ano);
-                pessoa.setDataSuspensao(dataSuspensao);
-                System.out.println("O aluno está suspenso até a seguinte data: " + pessoa.getDataSuspensao());
-
-                pessoa.setLivroLista(new ArrayList<Livro>());
-            }else{
-                System.out.println("O professor atrasou a data de entrega dos livros");
-            }
-        } else {
+            dataSuspensao = entregaRealizada.plusDays(dia).plusMonths(mes).plusYears(ano);
+            pessoa.setDataSuspensao(dataSuspensao);
+            System.out.println(pessoa.getNome() + " está suspenso até a seguinte data: "+pessoa.getDataSuspensao() + "\n");
+        }else{
             System.out.println("Livros devolvidos");
-            pessoa.setLivroLista(new ArrayList<Livro>());
         }
+        pessoa.setLivroLista(new ArrayList<>());
         pessoa.setEmprestimoRealizado(false);
     }
 
@@ -141,7 +110,7 @@ public class Biblioteca {
             throw new IllegalArgumentException("Livro não está no acervo");
         }
     }
-    private void confirmarEmprestimo(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
+    private void confirmarEmprestimo(List<Livro> livros) throws IllegalArgumentException {
         int size = livros.size();
         int[] indicesAcervo = new int [size];
         Arrays.fill(indicesAcervo, -1);
@@ -149,7 +118,7 @@ public class Biblioteca {
             for (int i = 0; i < acervo.size(); i++) {
                 isInAcervo(livros.get(j));
                 if (verificaIgual(livros.get(j), i)) {
-                    verificaSeFoiEmprestado(livros.get(j));
+                    verificaSeLivroFoiEmprestado(livros.get(j));
                     indicesAcervo[j] = i;
                     break;
                 }
@@ -163,9 +132,8 @@ public class Biblioteca {
         }
     }
 
-    private void retornarLivro(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
+    private void retornarLivro(List<Livro> livros) throws IllegalArgumentException {
 
-        System.out.println(livros.toString());
         int size = livros.size();
         int[] indicesAcervo = new int [size];
         Arrays.fill(indicesAcervo, -1);
@@ -194,6 +162,32 @@ public class Biblioteca {
         }
         return conta == n.length;
     }
+
+    public List<Livro> getAcervo() {
+        return acervo = getLivros();
+    }
+
+    Livro livro1  = new Livro(10688, "Dom Casmurro", "Machado de Assis", "herbert richers");
+    Livro livro2  = new Livro(10689, "Caçadas de Pedrinho", "Monteiro Lobato", "telecinez");
+    Livro livro3  = new Livro(10610, "Memórias póstumas de Brás Cubas", "Machado de Assis", "herbert richers");
+    Livro livro4  = new Livro(10611, "O saci", "Monteiro Lobato", "telecine");
+    Livro livro5  = new Livro(10612, "Despedida", "Cecília Meireles", "hollywood");
+    Livro livro6  = new Livro(10613, "Missa do galo", "Machado de Assis", "telecine");
+    Livro livro7  = new Livro(10614, "Elegia", "Cecília Meireles", "hollywood");
+    Livro livro8  = new Livro(10615, "Relógio", "Mario Quintana", "Aleph");
+    Livro livro9  = new Livro(10616, "Esperança", "Mario Quintana", "Suma");
+    Livro livro10 = new Livro(10617, "A cabana do Pai Tomás", "Harriet Beecher Stowe", "Editora Rocco");
+    Livro livro11 = new Livro(10618, "1984", "George Orwell", "Editora Rocha");
+    Livro livro12 = new Livro(10619, "O Mundo se Despedaça", "Chinua Achebe", "Editora Ilustrador");
+    Livro livro13 = new Livro(10620, "Dom Quixote", "Miguel de Cervantes", "Editora Pause");
+    Livro livro14 = new Livro(10621, " Hamlet", "William Shakespeare", "Editora Bloco64");
+    Livro livro15 = new Livro(10622, "Cem anos de solidão", "Gabriel García Márquez", "Editora Antartida");
+    Livro livro16 = new Livro(10623, " Ilíada", "Homero", "Editora Assis");
+    Livro livro17 = new Livro(10624, "Amada", "Toni Morrison", "Editora Avenida");
+    Livro livro18 = new Livro(10625, "A Divina Comédia", "Dante Alighieri", "Editora America");
+    Livro livro19 = new Livro(10626, " Romeu e Julieta", "William Shakespeare", "Editora Global");
+    Livro livro20 = new Livro(10627, " Série Harry Potter", "JK Rowling", "Editora Brasil");
+
     public List<Livro> getLivros() {
         List<Livro> acervo = new ArrayList<>();
         acervo.add(livro1);

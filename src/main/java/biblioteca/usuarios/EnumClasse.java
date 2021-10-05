@@ -1,5 +1,5 @@
 package biblioteca.usuarios;
 
 public enum EnumClasse {
-    ALUNO,PROFESSOR;
+    ALUNO,PROFESSOR
 }

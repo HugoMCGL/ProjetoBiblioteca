@@ -10,9 +10,6 @@ import static java.time.DayOfWeek.SUNDAY;
 
 public class DataDia {
 
-    List<Feriado> feriadosList = getFeriados();
-    LocalDate hoje = LocalDate.now();
-
     private static boolean isDiaUtil(LocalDate data) {
         DayOfWeek dayOfWeek = data.getDayOfWeek();
         return !(SATURDAY.equals(dayOfWeek) || SUNDAY.equals(dayOfWeek) || isFeriado(data));
