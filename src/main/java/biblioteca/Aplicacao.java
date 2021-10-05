@@ -38,7 +38,7 @@ public class Aplicacao {
         System.out.println("Empréstimos:\n");
 
         List<Livro> listaLivrosDesejados = new ArrayList<Livro>();
-        listaLivrosDesejados.add(biblioteca.livro1);
+        /*listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
 
@@ -74,11 +74,11 @@ public class Aplicacao {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            listaLivrosDesejados.clear();
+            listaLivrosDesejados.clear();*/
 
-            listaLivrosDesejados.add(biblioteca.livro11);
-            listaLivrosDesejados.add(biblioteca.livro12);
-            listaLivrosDesejados.add(biblioteca.livro13);
+            listaLivrosDesejados.add(biblioteca.livro1);
+            listaLivrosDesejados.add(biblioteca.livro2);
+            listaLivrosDesejados.add(biblioteca.livro3);
 
             for (int i = 0; i < listaLivrosDesejados.size(); i++) {
 
@@ -95,17 +95,28 @@ public class Aplicacao {
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
                 }
-                listaLivrosDesejados.clear();
 
-                System.out.println(gustavo.getLivroLista().toString());
-                System.out.println(gustavo.getDataEntrega());
-                System.out.println(inacio.getLivroLista().toString());
-                System.out.println(inacio.getDataEntrega());
+                listaLivrosDesejados.clear();
 
                 biblioteca.devolveLivro(inacio, dataTesteEntrega);
 
-                System.out.println(inacio.getLivroLista());
+        listaLivrosDesejados.add(biblioteca.livro1);
+        listaLivrosDesejados.add(biblioteca.livro2);
+        listaLivrosDesejados.add(biblioteca.livro3);
 
+
+                try {
+                    biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, inacio);
+                }   catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+
+
+                listaLivrosDesejados.clear();
+
+                for (Livro l : biblioteca.getAcervo()) {
+                    System.out.println(l.toString());
+                }
             }
         }
 

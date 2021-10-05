@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public class Biblioteca {
+
     LocalDate dataEntrega;
     LocalDate dataSuspensao;
     static DataDia calculaData = new DataDia();
@@ -43,6 +44,7 @@ public class Biblioteca {
 
     public void fazerEmprestimoDeLivro(List<Livro> livrosEmprestimo, Pessoa pessoa) throws IllegalArgumentException {
 
+        verificaSeAcabouDiasDeSuspensao(pessoa, LocalDate.of(2022, 03, 01));
         verificaSePessoaJaEmprestou(pessoa);
         verificaSePessoaSuspensa(pessoa);
         if(pessoa instanceof Alunos) {
@@ -58,6 +60,23 @@ public class Biblioteca {
         pessoa.setEmprestimoRealizado(true);
         System.out.println("O livro precisa ser devolvido até a data: "+dataEntrega+"\n");
     }
+
+    private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
+        //soma a data de entrega + 10 ou 20 + dias de atraso
+        if (pessoa.getDataEntrega() != null) {
+            if (pessoa instanceof Alunos) {
+                if (hoje.isAfter(pessoa.getDataSuspensao())) {
+                    System.out.println(pessoa.getNome() + " não está mais suspenso");
+                    pessoa.setSuspenso(false);
+                    System.out.println(pessoa.isSuspenso());
+                } else {
+                    throw new IllegalArgumentException(pessoa.getNome() + " ainda suspenso");
+                }
+            }
+        }
+    }
+
+
 
     private void verificaSePessoaSuspensa(Pessoa pessoa) {
         if(pessoa.isSuspenso()) {
@@ -85,15 +104,16 @@ public class Biblioteca {
         return acervo.get(i).getTitulo().equals(livro.getTitulo());
     }
 
-    public void devolveLivro(Pessoa pessoa, LocalDate hoje){
+    public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
 
-        if(hoje.isAfter(pessoa.getDataEntrega())) {
+
+        if(entregaRealizada.isAfter(pessoa.getDataEntrega())) {
             pessoa.setSuspenso(true);
-            dia = (Period.between(pessoa.getDataEntrega(), hoje).getDays());
-            mes = (Period.between(pessoa.getDataEntrega(), hoje).getMonths());
-            ano = (Period.between(pessoa.getDataEntrega(), hoje).getYears());
+            dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
+            mes = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getMonths());
+            ano = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getYears());
 
-            dataSuspensao = hoje.plusDays(dia).plusMonths(mes).plusYears(ano);
+            dataSuspensao = entregaRealizada.plusDays(dia).plusMonths(mes).plusYears(ano);
             pessoa.setDataSuspensao(dataSuspensao);
             System.out.println("O aluno está suspenso até a seguinte data: "+pessoa.getDataSuspensao());
             pessoa.setLivroLista(new ArrayList<Livro>());
@@ -101,7 +121,11 @@ public class Biblioteca {
             System.out.println("Livros devolvidos");
             pessoa.setLivroLista(new ArrayList<Livro>());
         }
+        retornarLivro(pessoa.getLivroLista(), pessoa);
+        pessoa.setEmprestimoRealizado(false);
     }
+
+
     private void isInAcervo(Livro livro) {
         if (!acervo.contains(livro)) {
             throw new IllegalArgumentException("Livro não está no acervo");
@@ -114,20 +138,38 @@ public class Biblioteca {
         for (int j = 0; j < size; j ++) {
             for (int i = 0; i < acervo.size(); i++) {
                 isInAcervo(livros.get(j));
-
                 if (verificaIgual(livros.get(j), i)) {
                     verificaSeFoiEmprestado(livros.get(j));
                     indicesAcervo[j] = i;
                     break;
                 }
             }
-
         }
-
         if (verificaIndice(indicesAcervo, -1)) {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(true);
 
+            }
+            System.out.println("Emprestimo realizado");
+        }
+    }
+
+    private void retornarLivro(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
+        int size = livros.size();
+        int[] indicesAcervo = new int [size];
+        Arrays.fill(indicesAcervo, -1);
+        for (int j = 0; j < size; j ++) {
+            for (int i = 0; i < acervo.size(); i++) {
+                if (verificaIgual(livros.get(j), i)) {
+                    System.out.println("aqui");
+                    indicesAcervo[j] = i;
+                    break;
+                }
+            }
+        }
+        if (verificaIndice(indicesAcervo, -1)) {
+            for (int j : indicesAcervo) {
+                acervo.get(j).setEmprestado(false);
             }
             System.out.println("Emprestimo realizado");
         }
