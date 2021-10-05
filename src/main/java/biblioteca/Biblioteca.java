@@ -36,53 +36,6 @@ public class Biblioteca {
         System.out.println("O empréstimo de "+pessoa.getNome() + " precisa ser devolvido até a data: "+dataEntrega+"\n");
     }
 
-    private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
-        if (pessoa.getDataEntrega() != null) {
-            if (pessoa instanceof Alunos) {
-                if (hoje.isAfter(pessoa.getDataSuspensao())) {
-                    System.out.println(pessoa.getNome() + " não está mais suspenso");
-                    pessoa.setSuspenso(false);
-                    System.out.println(pessoa.getSuspenso());
-                } else {
-                    throw new IllegalArgumentException(pessoa.getNome() + " ainda suspenso");
-                }
-            }
-        }
-    }
-
-
-
-    private void verificaSePessoaSuspensa(Pessoa pessoa) {
-        if(pessoa.getSuspenso()) {
-            throw new IllegalArgumentException("Você está suspenso por não devolver os livros no prazo");
-        }
-    }
-    private void isMaisQue(int n, List<Livro> livrosEmprestimo) {
-        if (livrosEmprestimo.size() > n) {
-            throw new IllegalArgumentException("Você não pode pegar mais de " +n+ " livros");
-        }
-    }
-    private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
-        if (pessoa.getEmprestimoRealizado()) {
-            throw new IllegalArgumentException("Você já realizou emprestimo");
-        }
-    }
-    private void verificaSeLivroFoiEmprestado(Livro livro) {
-        if(livro.getEmprestado()) {
-            throw new IllegalArgumentException("Livro ja emprestado");
-        }
-    }
-
-    private boolean verificaIgual(Livro livro, int i) {
-        return acervo.get(i).getTitulo().equals(livro.getTitulo());
-    }
-
-    private void verificaSePessoaNaoEmprestou(Pessoa pessoa) {
-        if (!pessoa.getEmprestimoRealizado()) {
-            throw new IllegalArgumentException("Você não realizou emprestimo");
-        }
-    }
-
     public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
 
         retornarLivro(pessoa.getLivroLista());
@@ -101,34 +54,6 @@ public class Biblioteca {
         }
         pessoa.setLivroLista(new ArrayList<>());
         pessoa.setEmprestimoRealizado(false);
-    }
-
-
-    private void isInAcervo(Livro livro) {
-        if (!acervo.contains(livro)) {
-            throw new IllegalArgumentException("Livro não está no acervo");
-        }
-    }
-    private void confirmarEmprestimo(List<Livro> livros) throws IllegalArgumentException {
-        int size = livros.size();
-        int[] indicesAcervo = new int [size];
-        Arrays.fill(indicesAcervo, -1);
-        for (int j = 0; j < size; j ++) {
-            for (int i = 0; i < acervo.size(); i++) {
-                isInAcervo(livros.get(j));
-                if (verificaIgual(livros.get(j), i)) {
-                    verificaSeLivroFoiEmprestado(livros.get(j));
-                    indicesAcervo[j] = i;
-                    break;
-                }
-            }
-        }
-        if (verificaIndice(indicesAcervo, -1)) {
-            for (int j : indicesAcervo) {
-                acervo.get(j).setEmprestado(true);
-            }
-            System.out.println("Emprestimo realizado");
-        }
     }
 
     private void retornarLivro(List<Livro> livros) throws IllegalArgumentException {
@@ -152,6 +77,76 @@ public class Biblioteca {
         }
     }
 
+    private void confirmarEmprestimo(List<Livro> livros) throws IllegalArgumentException {
+        int size = livros.size();
+        int[] indicesAcervo = new int [size];
+        Arrays.fill(indicesAcervo, -1);
+        for (int j = 0; j < size; j ++) {
+            for (int i = 0; i < acervo.size(); i++) {
+                isInAcervo(livros.get(j));
+                if (verificaIgual(livros.get(j), i)) {
+                    verificaSeLivroFoiEmprestado(livros.get(j));
+                    indicesAcervo[j] = i;
+                    break;
+                }
+            }
+        }
+        if (verificaIndice(indicesAcervo, -1)) {
+            for (int j : indicesAcervo) {
+                acervo.get(j).setEmprestado(true);
+            }
+            System.out.println("Emprestimo realizado");
+        }
+    }
+
+    private void isMaisQue(int n, List<Livro> livrosEmprestimo) {
+        if (livrosEmprestimo.size() > n) {
+            throw new IllegalArgumentException("Você não pode pegar mais de " +n+ " livros");
+        }
+    }
+
+    private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
+        if (pessoa.getDataEntrega() != null) {
+            if (pessoa instanceof Alunos) {
+                if (hoje.isAfter(pessoa.getDataSuspensao())) {
+                    System.out.println(pessoa.getNome() + " não está mais suspenso");
+                    pessoa.setSuspenso(false);
+                    System.out.println(pessoa.getSuspenso());
+                } else {
+                    throw new IllegalArgumentException(pessoa.getNome() + " ainda suspenso");
+                }
+            }
+        }
+    }
+
+    private void verificaSePessoaJaEmprestou(Pessoa pessoa) {
+        if (pessoa.getEmprestimoRealizado()) {
+            throw new IllegalArgumentException("Você já realizou emprestimo");
+        }
+    }
+
+    private void verificaSePessoaSuspensa(Pessoa pessoa) {
+        if(pessoa.getSuspenso()) {
+            throw new IllegalArgumentException("Você está suspenso por não devolver os livros no prazo");
+        }
+    }
+
+    private void verificaSeLivroFoiEmprestado(Livro livro) {
+        if(livro.getEmprestado()) {
+            throw new IllegalArgumentException("Livro ja emprestado");
+        }
+    }
+
+    private boolean verificaIgual(Livro livro, int i) {
+        return acervo.get(i).getTitulo().equals(livro.getTitulo());
+    }
+
+    private void verificaSePessoaNaoEmprestou(Pessoa pessoa) {
+        if (!pessoa.getEmprestimoRealizado()) {
+            throw new IllegalArgumentException("Você não realizou emprestimo");
+        }
+    }
+
     private boolean verificaIndice(int[] n, int i) {
         int conta = 0;
         for (int k : n) {
@@ -160,6 +155,12 @@ public class Biblioteca {
             }
         }
         return conta == n.length;
+    }
+
+    private void isInAcervo(Livro livro) {
+        if (!acervo.contains(livro)) {
+            throw new IllegalArgumentException("Livro não está no acervo");
+        }
     }
 
     public List<Livro> getAcervo() {
