@@ -38,7 +38,7 @@ public class Aplicacao {
         System.out.println("Empréstimos:\n");
 
         List<Livro> listaLivrosDesejados = new ArrayList<Livro>();
-        /*listaLivrosDesejados.add(biblioteca.livro1);
+        listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
 
@@ -74,7 +74,7 @@ public class Aplicacao {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            listaLivrosDesejados.clear();*/
+            listaLivrosDesejados.clear();
 
             listaLivrosDesejados.add(biblioteca.livro1);
             listaLivrosDesejados.add(biblioteca.livro2);
@@ -100,11 +100,16 @@ public class Aplicacao {
 
                 biblioteca.devolveLivro(inacio, dataTesteEntrega);
 
+
+        for (Livro l : biblioteca.getAcervo()) {
+            System.out.println(l.toString());
+        }
+
         listaLivrosDesejados.add(biblioteca.livro1);
         listaLivrosDesejados.add(biblioteca.livro2);
         listaLivrosDesejados.add(biblioteca.livro3);
 
-
+        System.out.println();
                 try {
                     biblioteca.fazerEmprestimoDeLivro(listaLivrosDesejados, inacio);
                 }   catch (Exception e) {
@@ -114,9 +119,6 @@ public class Aplicacao {
 
                 listaLivrosDesejados.clear();
 
-                for (Livro l : biblioteca.getAcervo()) {
-                    System.out.println(l.toString());
-                }
             }
         }
 

@@ -106,7 +106,7 @@ public class Biblioteca {
 
     public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
 
-
+        retornarLivro(pessoa.getLivroLista(), pessoa);
         if(entregaRealizada.isAfter(pessoa.getDataEntrega())) {
             pessoa.setSuspenso(true);
             dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
@@ -121,7 +121,6 @@ public class Biblioteca {
             System.out.println("Livros devolvidos");
             pessoa.setLivroLista(new ArrayList<Livro>());
         }
-        retornarLivro(pessoa.getLivroLista(), pessoa);
         pessoa.setEmprestimoRealizado(false);
     }
 
@@ -148,20 +147,20 @@ public class Biblioteca {
         if (verificaIndice(indicesAcervo, -1)) {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(true);
-
             }
             System.out.println("Emprestimo realizado");
         }
     }
 
     private void retornarLivro(List<Livro> livros, Pessoa pessoa) throws IllegalArgumentException {
+
+        System.out.println(livros.toString());
         int size = livros.size();
         int[] indicesAcervo = new int [size];
         Arrays.fill(indicesAcervo, -1);
         for (int j = 0; j < size; j ++) {
             for (int i = 0; i < acervo.size(); i++) {
                 if (verificaIgual(livros.get(j), i)) {
-                    System.out.println("aqui");
                     indicesAcervo[j] = i;
                     break;
                 }
