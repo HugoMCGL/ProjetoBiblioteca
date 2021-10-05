@@ -97,8 +97,14 @@ public class Aplicacao {
                 }
 
                 listaLivrosDesejados.clear();
+        System.out.println("aqui");
+        System.out.println(inacio.getDataEntrega());
 
-                biblioteca.devolveLivro(inacio, dataTesteEntrega);
+        try {
+            biblioteca.devolveLivro(inacio, dataTesteEntrega);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
 
         for (Livro l : biblioteca.getAcervo()) {

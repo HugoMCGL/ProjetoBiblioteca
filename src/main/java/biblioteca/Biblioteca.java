@@ -104,9 +104,16 @@ public class Biblioteca {
         return acervo.get(i).getTitulo().equals(livro.getTitulo());
     }
 
+    private void verificaSePessoaNaoEmprestou(Pessoa pessoa) {
+        if (!pessoa.isEmprestimoRealizado()) {
+            throw new IllegalArgumentException("Você não realizou emprestimo");
+        }
+    }
+
     public void devolveLivro(Pessoa pessoa, LocalDate entregaRealizada){
 
         retornarLivro(pessoa.getLivroLista(), pessoa);
+        verificaSePessoaNaoEmprestou(pessoa);
         if(entregaRealizada.isAfter(pessoa.getDataEntrega())) {
             pessoa.setSuspenso(true);
             dia = (Period.between(pessoa.getDataEntrega(), entregaRealizada).getDays());
