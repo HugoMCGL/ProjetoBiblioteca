@@ -149,6 +149,7 @@ public class Biblioteca {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(false);
             }
+            System.out.println("Emprestimo devolvido");
         }
     }
 
