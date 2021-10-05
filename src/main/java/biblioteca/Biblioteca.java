@@ -33,7 +33,7 @@ public class Biblioteca {
         pessoa.setLivroLista(List.copyOf(livrosEmprestimo));
         pessoa.setDataEntrega(dataEntrega);
         pessoa.setEmprestimoRealizado(true);
-        System.out.println("O empréstimo precisa ser devolvido até a data: "+dataEntrega+"\n");
+        System.out.println("O empréstimo de "+pessoa.getNome() + " precisa ser devolvido até a data: "+dataEntrega+"\n");
     }
 
     private void verificaSeAcabouDiasDeSuspensao(Pessoa pessoa, LocalDate hoje) {
@@ -149,7 +149,6 @@ public class Biblioteca {
             for (int j : indicesAcervo) {
                 acervo.get(j).setEmprestado(false);
             }
-            System.out.println("Emprestimo realizado");
         }
     }
 
